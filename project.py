@@ -62,7 +62,7 @@ def update_dish_template():
 def ventana_1tkinter():
     #   Primera Ventana | Inicio
     ventana_main = tk.Tk()
-    ventana_main.title("Restorant J y S")
+    ventana_main.title("Restorant S J y S")
     ventana_main.geometry("370x330") # 600x450+350+150
     ventana_main.iconbitmap("forkandknife.ico") # Imagen Arriba
     inicio = tk.Label(ventana_main, text = "Mi Restaurante",\
