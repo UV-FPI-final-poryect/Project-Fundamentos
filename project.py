@@ -2,10 +2,13 @@
 
 #   Author:
 #   Juan David Cifuentes
+#   Santiago Echeverri Torres
 #   Santiago Lopez Ramirez
 
 
 import tkinter as tk
+from tkinter import *
+from PIL import Image, ImageTk
 
 #   Opcion Registrarse                          1 Pag
 def register_template():
@@ -43,53 +46,82 @@ def deliver_management_template():
 def logout_user():
     pass
 
+#   Agregar Platos                              5 Pag
+def create_dish_template():
+    pass
+
+#   Eliminar Platos                             5 Pag
+def delete_dish_template():
+    pass
+
+#   Actualizar Platos                           5 Pag
+def update_dish_template():
+    pass
+
 #   Ventana Principal de Inicio                 1 Pag
 def ventana_1tkinter():
     #   Primera Ventana | Inicio
     ventana_main = tk.Tk()
-    ventana_main.title("Restorant SLP")
-    ventana_main.geometry("370x330")
+    ventana_main.title("Restorant J y S")
+    ventana_main.geometry("370x330") # 600x450+350+150
+    ventana_main.iconbitmap("forkandknife.ico") # Imagen Arriba
     inicio = tk.Label(ventana_main, text = "Mi Restaurante",\
         font = "Helvetica 14")
-    #logo
-    intro = tk.Label(ventana_main, text = \
+    inicio.pack()
+    #   Logo
+    image = Image.open("Logo.png")
+    image = image.resize((50, 50))
+    img = ImageTk.PhotoImage(image)
+    lbl_img = Label(ventana_main, image = img)
+    lbl_img.pack()
+    frame = LabelFrame(ventana_main, bd=0, background = "White")
+    frame.pack()
+    intro = tk.Label(frame, text = \
         """
         Nuestro restaurante es un lugar donde ofrecemos
         una variedad de platos deliciosos y recursos
         culinarios para el público para satisfacer tus
-        necesidades culinarias y hacewrte disfrutar d una
+        necesidades culinarias y hacerte disfrutar de una
         experiencia gastronómica excepcional.
         """)
-    button_signin = tk.Button(ventana_main, text = "Registrarse",\
-        font = "Helvetica 11", command = lambda: register_template())
-    button_logout = tk.Button(ventana_main, text = "Iniciar Sesion",\
-        font = "Helvetica 11", command = lambda: login_template())
-    inicio.pack()
     intro.pack()
+    button_signin = tk.Button(ventana_main, text = "Registrarse",\
+        font = "Helvetica 11", bg = "gray", fg = "white", \
+            command = lambda: ventana_2tkinter())
     button_signin.pack()
+    button_logout = tk.Button(ventana_main, text = "Iniciar Sesion",\
+        font = "Helvetica 11", bg = "gray", fg = "white", \
+            command = lambda: ventana_3tkinter())
     button_logout.pack()
     ventana_main.mainloop()
 
 #   Ventana de Registro                         2 Pag
 def ventana_2tkinter():
     #   Segunda  Ventana | Registro
-    ventana_1 = tk.Tk()
+    ventana_1 = tk.Toplevel()
     ventana_1.title("Registro")
     ventana_1.geometry("370x330")
     inicio = tk.Label(ventana_1, text = "Mi Restaurante",\
         font = "Helvetica 14")
     # logo
-    lbl1 = tk.Label(ventana_1, text = "Registrarse",\
+    image = Image.open("Logo.png")
+    image = image.resize((50, 50))
+    img = ImageTk.PhotoImage(image)
+    lbl_img = Label(ventana_1, image = img)
+    frame = LabelFrame(ventana_1, bd=0, background = "White")
+    lbl1 = tk.Label(frame, text = "Registrarse",\
         font = "Helvetica 11")
-    lbl2 = tk.Label(ventana_1, text = "Email")
-    lbl3 = tk.Label(ventana_1, text = "Contraseña")
-    lbl4 = tk.Label(ventana_1, text = "Confirmar Contraseña")
-    nemail = tk.Entry(ventana_1)
-    npassw = tk.Entry(ventana_1)
-    npassw1 = tk.Entry(ventana_1)
-    button_loged = tk.Button(ventana_1, text = "Registrar",\
+    lbl2 = tk.Label(frame, text = "Email")
+    lbl3 = tk.Label(frame, text = "Contraseña")
+    lbl4 = tk.Label(frame, text = "Confirmar Contraseña")
+    nemail = tk.Entry(frame)
+    npassw = tk.Entry(frame)
+    npassw1 = tk.Entry(frame)
+    button_loged = tk.Button(frame, text = "Registrar",\
         font = "Helvetica 10", command = lambda: register_user())
     inicio.pack()
+    lbl_img.pack()
+    frame.pack()
     lbl1.pack()
     lbl2.pack()
     nemail.pack()
@@ -103,21 +135,29 @@ def ventana_2tkinter():
 #   Ventana de Inicio Sesion                    3 Pag
 def ventana_3tkinter():
     #   Tercera  Ventana | Inicio Sesion
-    ventana_2 = tk.Tk()
-    ventana_2.title("Registro")
+    ventana_2 = tk.Toplevel()
+    ventana_2.title("Iniciar Sesion")
     ventana_2.geometry("370x330")
     inicio = tk.Label(ventana_2, text = "Mi Restaurante",\
         font = "Helvetica 14")
     # logo
-    lbl1 = tk.Label(ventana_2, text = "Inicio Sesión",\
+    image = Image.open("Logo.png")
+    image = image.resize((50, 50))
+    img = ImageTk.PhotoImage(image)
+    lbl_img = Label(ventana_2, image = img)
+    frame = LabelFrame(ventana_2, bd=0, background = "Gray")
+    lbl1 = tk.Label(frame, text = "Inicio Sesión",\
         font = "Helvetica 11")
-    lbl2 = tk.Label(ventana_2, text = "Email")
-    lbl3 = tk.Label(ventana_2, text = "Contraseña")
-    nemail = tk.Entry(ventana_2)
-    npassw = tk.Entry(ventana_2)
-    button_loged = tk.Button(ventana_2, text = "Iniciar Sesión",\
-        font = "Helvetica 10", command = lambda: login_user())
+    lbl2 = tk.Label(frame, text = "Email")
+    lbl3 = tk.Label(frame, text = "Contraseña")
+    nemail = tk.Entry(frame)
+    npassw = tk.Entry(frame)
+    button_loged = tk.Button(frame, text = "Iniciar Sesión",\
+        font = "Helvetica 10", bg = "gray", fg = "white",\
+            command = lambda: login_user())
     inicio.pack()
+    lbl_img.pack()
+    frame.pack()
     lbl1.pack()
     lbl2.pack()
     nemail.pack()
