@@ -1,13 +1,16 @@
 #   Project Final Course Fundamentos
 
-#   Author:
+#   Authors:
 #   Juan David Cifuentes
 #   Santiago Echeverri Torres
 #   Santiago Lopez Ramirez
 
+# python version 3.12
+# pillow version 10.1
 
 import tkinter as tk
 from tkinter import *
+import os
 from PIL import Image, ImageTk
 
 #   Opcion Registrarse                          1 Pag
@@ -64,7 +67,8 @@ def ventana_1tkinter():
     ventana_main = tk.Tk()
     ventana_main.title("Restorant S J y S")
     ventana_main.geometry("370x330") # 600x450+350+150
-    ventana_main.iconbitmap("forkandknife.ico") # Imagen Arriba
+
+    ventana_main.iconbitmap(bitmap='forkandknife.ico') # Imagen Arriba
     inicio = tk.Label(ventana_main, text = "Mi Restaurante",\
         font = "Helvetica 14")
     inicio.pack()
