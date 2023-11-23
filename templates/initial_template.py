@@ -1,28 +1,13 @@
 from tkinter import *
 from tkinter import ttk
 import textwrap
-
 from PIL import Image, ImageTk
-from utils.clean_frame import clean
-#from templates.signin_template import signin_template
-#from templates.login_template import login_template
+
 from utils.template_handler import templ_handler
 
-def initial_templ(root):
+def initial_templ(dinamic_frame):
     #   Primera Ventana | Inicio
-     clean(root)
-
-     init_templ_content = ttk.Frame(root)
-     init_templ_content.grid_rowconfigure(0, weight=1)
-     init_templ_content.grid_columnconfigure(0, weight=1)
-     init_templ_content.grid_columnconfigure(1, weight=1)
      
-     image = Image.open("../multimedia/Logo.png")
-     image = image.resize((50, 50))
-     img = ImageTk.PhotoImage(image)
-     lbl_img = Label(init_templ_content, image = img)
-     lbl_ini = Label(init_templ_content, text = "Mi Restaurante",
-                     font = "Helvetica 14", anchor="center", justify="center")
      intro_txt = textwrap.dedent( """
                     Nuestro restaurante es un lugar donde ofrecemos
                     una variedad de platos deliciosos y recursos
@@ -30,30 +15,41 @@ def initial_templ(root):
                     necesidades culinarias y hacerte disfrutar de 
                     una experiencia gastronómica excepcional.
                     """)
-     lbl_intro_txt = Label(init_templ_content, text = intro_txt,\
+     lbl_intro_txt = Label(dinamic_frame, text = intro_txt,\
           font = "Helvetica 11", anchor="center", justify="center")
-     bttn_signin = Button(init_templ_content, 
+     
+     bttn_signin = Button(dinamic_frame, 
                          text = "Registrarse",
                          font = "Helvetica 11", 
                          bg = "gray", 
                          fg = "white", 
-                         command = lambda: templ_handler(root, 'signin'))
-                         #command = lambda: signin_template(root))
-     bttn_login = Button(init_templ_content, 
+                         command = lambda frame=dinamic_frame: templ_handler('signin', frame))
+     
+     bttn_login = Button(dinamic_frame, 
                          text = "Iniciar Sesion",
                          font = "Helvetica 11", 
                          bg = "gray", 
                          fg = "white", 
-                         command = lambda: templ_handler(root, 'login'))
-                         #command = lambda: login_template(root))
+                         command = lambda frame=dinamic_frame: templ_handler(frame, 'login'))
+
+     lbl_intro_txt.grid(column=0, row=0, columnspan=2)
+     bttn_signin.grid(column=0, row=0, sticky="nsew", padx=10, pady=10)
+     bttn_login.grid(column=1, row=1, sticky="nsew", padx=10, pady=10)
 
 
-     init_templ_content.grid(column=0, row=0, padx=10, pady=10,
-                                        sticky="nsew")
-     lbl_img.grid(column=0, row=0, columnspan=2)
-     lbl_ini.grid(column=0, row=1, columnspan=2)
-     lbl_intro_txt.grid(column=0, row=2, columnspan=2)
-     bttn_signin.grid(column=0, row=3, sticky="nsew", padx=10, pady=10)
-     bttn_login.grid(column=1, row=3, sticky="nsew", padx=10, pady=10)
 
-     root.mainloop()
+# from tkinter import *
+# from tkinter import ttk
+# import handler
+
+# def templ1(frame):
+
+#      ttk.Label(frame, text="plantilla 1").grid(column=0, row=0, columnspan=2)
+
+#      ttk.Button(frame, text="t2", command=lambda frame=frame: 
+#                              handler.handy('t2', frame)).grid(column=0, row=1)
+#      ttk.Button(frame, text="t3", command=lambda frame=frame: 
+#                              handler.handy('t3', frame)).grid(column=1, row=1)
+     
+
+     
