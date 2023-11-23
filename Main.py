@@ -30,9 +30,9 @@ if __name__ == '__main__':
                      anchor="center", 
                      justify="center")
 
-     dinamic_frame = ttk.Frame(root)
-     dinamic_frame.grid(column=0, row=0, sticky="nwes")
+     dynamic_frame = ttk.Frame(root)
+     dynamic_frame.grid(column=0, row=0, sticky="nwes")
 
-     templ_handler('initial', dinamic_frame)
+     templ_handler('initial', dynamic_frame)
 
      root.mainloop()
