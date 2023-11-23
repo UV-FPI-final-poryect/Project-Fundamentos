@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
-#from templates.initial_template import initial_templ
+
 from utils.change_path_for_img import change_path
 from utils.template_handler import templ_handler
 
@@ -30,7 +30,5 @@ if __name__ == '__main__':
      dinamic_frame.grid(column=0, row=0, sticky="nwes")
 
      templ_handler('initial', dinamic_frame)
-
-     #initial_templ(root)
 
      root.mainloop()
