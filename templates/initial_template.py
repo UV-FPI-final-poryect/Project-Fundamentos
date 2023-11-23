@@ -3,9 +3,9 @@ from tkinter import ttk
 import textwrap
 from PIL import Image, ImageTk
 
-from utils.template_handler import templ_handler
+import utils.template_handler
 
-def initial_templ(dynamic_frame):
+def initial_template(dynamic_frame):
     # Primera Ventana | Inicio
      font = "Helvetica 11"
      intro_txt = textwrap.dedent( """
@@ -25,13 +25,13 @@ def initial_templ(dynamic_frame):
                           font = font, 
                           bg = "gray", 
                           fg = "white", 
-                          command = lambda frame=dynamic_frame: templ_handler('signin', frame))
+                          command = lambda frame=dynamic_frame: utils.template_handler.templ_handler('signin', frame))
      bttn_login = Button(dynamic_frame, 
                          text = "Iniciar Sesion",
                          font = font, 
                          bg = "gray", 
                          fg = "white", 
-                         command = lambda frame=dynamic_frame: templ_handler('login', frame))
+                         command = lambda frame=dynamic_frame: utils.template_handler.templ_handler('login', frame))
      lbl_intro_txt.grid(column=0, row=0, columnspan=2)
      bttn_signin.grid(column=0, row=1, sticky="nsew", padx=10, pady=10)
      bttn_login.grid(column=1, row=1, sticky="nsew", padx=10, pady=10)

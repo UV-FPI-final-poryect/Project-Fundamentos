@@ -1,12 +1,13 @@
-from templates.initial_template import initial_templ
+from templates.initial_template import initial_template
 from templates.login_template import login_template
 from templates.signin_template import signin_template
+from templates.main_menu_template import main_menu_template
 
-#from utils.clean_frame import clean -  ELIMINAR script
 
-templ_dic = {'initial':initial_templ,
+templ_dic = {'initial':initial_template,
              'login':login_template,
-             'signin':signin_template
+             'signin':signin_template,
+             'main_menu':main_menu_template
              }
 
 def templ_handler(choice, dynamic_frame):

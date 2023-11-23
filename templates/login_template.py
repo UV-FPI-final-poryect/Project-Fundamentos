@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
 
-from utils.template_handler import templ_handler
+import utils.template_handler
 
 def login_template(dynamic_frame):
      #   Tercera  Ventana | Inicio Sesion
@@ -31,7 +31,7 @@ def login_template(dynamic_frame):
                            font=font, 
                            bg="gray", 
                            fg="white",
-                           command=lambda frame=dynamic_frame : templ_handler('login', frame)) #pendiente funcion que busque en la base de datos y de acceso
+                           command=lambda frame=dynamic_frame : utils.template_handler.templ_handler('main_menu', frame)) #pendiente funcion que busque en la base de datos y de acceso
      
 
      lbl_title.grid(column=0, row=0, pady=10)

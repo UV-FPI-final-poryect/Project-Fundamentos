@@ -1,7 +1,7 @@
-
+from tkinter import *
 import tkinter as tk
 from PIL import Image, ImageTk
-
+import utils.template_handler
 def signin_template(dynamic_frame):
     #   Segunda  Ventana | Registro
     font = "Helvetica 11"
@@ -35,7 +35,7 @@ def signin_template(dynamic_frame):
                            font=font, 
                            bg="gray", 
                            fg="white",
-                           command=lambda frame=dynamic_frame : templ_handler('initial', frame)) #pendiente funcion que guarde en la base de datos
+                           command=lambda frame=dynamic_frame : utils.template_handler.templ_handler('initial', frame)) #pendiente funcion que guarde en la base de datos
     
     lbl_title.grid(column=0, row=0, pady=10)
     lbl_subtitle_email.grid(column=0, row=1)

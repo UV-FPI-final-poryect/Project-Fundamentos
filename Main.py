@@ -10,13 +10,12 @@ if __name__ == '__main__':
 
      root = Tk()
      root.title("SSJ Restorant")
-     root.columnconfigure(0, weight=1, minsize=250)
-     root.rowconfigure(0, weight=1, minsize=100)
+     root.columnconfigure(0, weight=1, minsize=500)
+     root.rowconfigure(0, weight=1, minsize=200)
      root.iconbitmap('../multimedia/forkandknife.ico')
 
      static_frame = ttk.Frame(root)
-     static_frame.grid(column=0, row=0, sticky="nwes")
-     static_frame.grid_rowconfigure(0, weight=1)
+     #static_frame.grid_rowconfigure(0, weight=1)
      static_frame.grid_columnconfigure(0, weight=1)
 
      image = Image.open("../multimedia/Logo.png")
@@ -31,7 +30,13 @@ if __name__ == '__main__':
                      justify="center")
 
      dynamic_frame = ttk.Frame(root)
-     dynamic_frame.grid(column=0, row=0, sticky="nwes")
+     dynamic_frame.grid_rowconfigure(0, weight=1)
+     dynamic_frame.grid_columnconfigure(0, weight=1)
+
+     static_frame.grid(column=0, row=0, sticky="nwes", pady=30)
+     dynamic_frame.grid(column=0, row=1, sticky="nwes")
+     lbl_img.grid(column=0, row=0, sticky="nwes")
+     lbl_ini.grid(column=0, row=1, sticky="nwes")
 
      templ_handler('initial', dynamic_frame)
 
