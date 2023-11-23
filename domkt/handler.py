@@ -17,6 +17,5 @@ def handy(choice, frame):
      temp_chosen = temp_choices[choice]
      temp_chosen(frame)
 
-
  
      
