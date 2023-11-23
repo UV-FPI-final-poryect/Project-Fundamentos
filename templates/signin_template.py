@@ -1,38 +1,47 @@
+
 import tkinter as tk
 from PIL import Image, ImageTk
 
-def signin_template(root):
+def signin_template(dynamic_frame):
     #   Segunda  Ventana | Registro
-    ventana_1 = tk.Toplevel(root)
-    ventana_1.title("Registro")
-    ventana_1.geometry("370x330")
-    inicio = tk.Label(ventana_1, text = "Mi Restaurante",\
-        font = "Helvetica 14")
-    # logo
-    image = Image.open("../multimedia/Logo.png")
-    image = image.resize((50, 50))
-    img = ImageTk.PhotoImage(image)
-    lbl_img = tk.Label(ventana_1, image = img)
-    frame = tk.LabelFrame(ventana_1, bd=0, background = "White")
-    lbl1 = tk.Label(frame, text = "Registrarse",\
-        font = "Helvetica 11")
-    lbl2 = tk.Label(frame, text = "Email")
-    lbl3 = tk.Label(frame, text = "Contraseña")
-    lbl4 = tk.Label(frame, text = "Confirmar Contraseña")
-    nemail = tk.Entry(frame)
-    npassw = tk.Entry(frame)
-    npassw1 = tk.Entry(frame)
-    button_loged = tk.Button(frame, text = "Registrar",\
-        font = "Helvetica 10") #command = lambda: register_user()
-    inicio.pack()
-    lbl_img.pack()
-    frame.pack()
-    lbl1.pack()
-    lbl2.pack()
-    nemail.pack()
-    lbl3.pack()
-    npassw.pack()
-    lbl4.pack()
-    npassw1.pack()
-    button_loged.pack()
-    ventana_1.mainloop()
+    font = "Helvetica 11"
+    title_font = "Helvetica 14"
+    lbl_title = tk.Label(dynamic_frame,
+                         text="Registro nuevo usuario",
+                         font=title_font)
+    lbl_subtitle_email = tk.Label(dynamic_frame,
+                                  text="Email",
+                                  font=font)
+    lbl_subtitle_pass = tk.Label(dynamic_frame, 
+                                 text="Contraseña",
+                                 font=font)
+    lbl_subtitle_confirm_pass = tk.Label(dynamic_frame, 
+                                         text="Confirmar Contraseña",
+                                         font=font)
+    user_email = StringVar()
+    user_pass = StringVar()
+    user_confirm_pass = StringVar()
+    
+    entry_email = Entry(dynamic_frame, 
+                         textvariable=user_email)
+    entry_passw = Entry(dynamic_frame, 
+                        textvariable=user_pass, 
+                        show="*")
+    entry_confirm_pass = Entry(dynamic_frame,
+                               textvariable=user_confirm_pass,
+                               show="*")
+    button_signin = Button(dynamic_frame, 
+                           text="Registrarse",
+                           font=font, 
+                           bg="gray", 
+                           fg="white",
+                           command=lambda frame=dynamic_frame : templ_handler('initial', frame)) #pendiente funcion que guarde en la base de datos
+    
+    lbl_title.grid(column=0, row=0, pady=10)
+    lbl_subtitle_email.grid(column=0, row=1)
+    entry_email.grid(column=0, row=2)
+    lbl_subtitle_pass.grid(column=0, row=3)
+    entry_passw.grid(column=0, row=4)
+    lbl_subtitle_confirm_pass.grid(column=0, row=5)
+    entry_confirm_pass.grid(column=0, row=6)
+    button_signin.grid(column=0, row=7, pady=10)
