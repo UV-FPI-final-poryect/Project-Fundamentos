@@ -22,9 +22,13 @@ if __name__ == '__main__':
      image = Image.open("../multimedia/Logo.png")
      image = image.resize((50, 50))
      img = ImageTk.PhotoImage(image)
-     lbl_img = Label(static_frame, image = img)
-     lbl_ini = Label(static_frame, text = "Mi Restaurante",
-                     font = "Helvetica 14", anchor="center", justify="center")
+     lbl_img = Label(static_frame, 
+                     image = img)
+     lbl_ini = Label(static_frame, 
+                     text = "Mi Restaurante",
+                     font = "Helvetica 14", 
+                     anchor="center", 
+                     justify="center")
 
      dinamic_frame = ttk.Frame(root)
      dinamic_frame.grid(column=0, row=0, sticky="nwes")
