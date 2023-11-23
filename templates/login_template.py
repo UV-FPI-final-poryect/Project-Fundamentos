@@ -1,37 +1,48 @@
-import tkinter as tk
+from tkinter import *
+from tkinter import ttk
 from PIL import Image, ImageTk
-
+from utils.clean_frame import clean
+from utils.template_handler import templ_handler
 
 #   Ventana de Inicio Sesion                    3 Pag
 def login_template(root):
-    #   Tercera  Ventana | Inicio Sesion
-    ventana_2 = tk.Toplevel(root)
-    ventana_2.title("Iniciar Sesion")
-    ventana_2.geometry("370x330")
-    inicio = tk.Label(ventana_2, text = "Mi Restaurante",\
-        font = "Helvetica 14")
-    # logo
-    image = Image.open("../multimedia/Logo.png")
-    image = image.resize((50, 50))
-    img = ImageTk.PhotoImage(image)
-    lbl_img = tk.Label(ventana_2, image = img)
-    frame = tk.LabelFrame(ventana_2, bd=0, background = "Gray")
-    lbl1 = tk.Label(frame, text = "Inicio Sesión",\
-        font = "Helvetica 11")
-    lbl2 = tk.Label(frame, text = "Email")
-    lbl3 = tk.Label(frame, text = "Contraseña")
-    nemail = tk.Entry(frame)
-    npassw = tk.Entry(frame)
-    button_loged = tk.Button(frame, text = "Iniciar Sesión",\
-        font = "Helvetica 10", bg = "gray", fg = "white")#,\
-            #command = lambda: login_user())
-    inicio.pack()
-    lbl_img.pack()
-    frame.pack()
-    lbl1.pack()
-    lbl2.pack()
-    nemail.pack()
-    lbl3.pack()
-    npassw.pack()
-    button_loged.pack()
-    ventana_2.mainloop()
+     #   Tercera  Ventana | Inicio Sesio
+     clean(root)
+
+     login_templ_content = ttk.Frame(root)
+     login_templ_content.grid_rowconfigure(0, weight=1)
+     login_templ_content.grid_columnconfigure(0, weight=1)
+     #login_templ_content.grid_columnconfigure(1, weight=1)
+
+     image = Image.open("../multimedia/Logo.png")
+     image = image.resize((50, 50))
+     img = ImageTk.PhotoImage(image)
+     lbl_img = Label(login_templ_content, image = img)
+     lbl_ini = Label(login_templ_content, text = "Mi Restaurante",
+                    font = "Helvetica 14", anchor="center", justify="center")
+     lbl1 = Label(login_templ_content, text = "Inicio Sesión", 
+                    font = "Helvetica 11")
+     lbl2 = Label(login_templ_content, text = "Email")
+     lbl3 = Label(login_templ_content, text = "Contraseña")
+
+     user_email = StringVar()
+     user_pass = StringVar()
+     nemail = Entry(login_templ_content, textvariable=user_email)
+     npassw = Entry(login_templ_content, textvariable=user_pass, show="*")
+     button_loged = Button(login_templ_content, text = "Iniciar Sesión",
+                         font = "Helvetica 10", bg = "gray", fg = "white",
+                         command = lambda:templ_handler(root, 'initial'))#, command = lambda: initial_templ(root))
+     
+     login_templ_content.grid(column=0, row=0, padx=10, pady=10,
+                                        sticky="nsew")
+     lbl_img.grid(column=0, row=0, pady=10)
+     lbl_ini.grid(column=0, row=1)
+     lbl1.grid(column=0, row=2, pady=10)
+     lbl2.grid(column=0, row=3)
+     nemail.grid(column=0, row=4)
+     lbl3.grid(column=0, row=5)
+     npassw.grid(column=0, row=6)
+     button_loged.grid(column=0, row=7, pady=10)
+
+
+     #root.mainloop()

@@ -3,32 +3,26 @@ from tkinter import ttk
 import textwrap
 
 from PIL import Image, ImageTk
-from utils.change_path_for_img import change_path
-from templates.signin_template import signin_template
-from templates.login_template import login_template
+from utils.clean_frame import clean
+#from templates.signin_template import signin_template
+#from templates.login_template import login_template
+from utils.template_handler import templ_handler
 
-def initial_template():
+def initial_templ(root):
     #   Primera Ventana | Inicio
-
-     change_path()
-
-     root = Tk()
-     root.title("SSJ Restorant")
-     root.columnconfigure(0, weight=1, minsize=250)
-     root.rowconfigure(0, weight=1, minsize=100)
-     root.iconbitmap('../multimedia/forkandknife.ico') # Imagen Arriba
+     clean(root)
 
      init_templ_content = ttk.Frame(root)
      init_templ_content.grid_rowconfigure(0, weight=1)
      init_templ_content.grid_columnconfigure(0, weight=1)
      init_templ_content.grid_columnconfigure(1, weight=1)
-
+     
      image = Image.open("../multimedia/Logo.png")
      image = image.resize((50, 50))
      img = ImageTk.PhotoImage(image)
      lbl_img = Label(init_templ_content, image = img)
-     lbl_ini = Label(init_templ_content, text = "Mi Restaurante",\
-          font = "Helvetica 14", anchor="center", justify="center")
+     lbl_ini = Label(init_templ_content, text = "Mi Restaurante",
+                     font = "Helvetica 14", anchor="center", justify="center")
      intro_txt = textwrap.dedent( """
                     Nuestro restaurante es un lugar donde ofrecemos
                     una variedad de platos deliciosos y recursos
@@ -43,13 +37,15 @@ def initial_template():
                          font = "Helvetica 11", 
                          bg = "gray", 
                          fg = "white", 
-                         command = lambda: signin_template(root))
+                         command = lambda: templ_handler(root, 'signin'))
+                         #command = lambda: signin_template(root))
      bttn_login = Button(init_templ_content, 
                          text = "Iniciar Sesion",
                          font = "Helvetica 11", 
                          bg = "gray", 
                          fg = "white", 
-                         command = lambda: login_template(root))
+                         command = lambda: templ_handler(root, 'login'))
+                         #command = lambda: login_template(root))
 
 
      init_templ_content.grid(column=0, row=0, padx=10, pady=10,
