@@ -9,6 +9,5 @@ def templ2(frame):
      ttk.Button(frame, text="t1", command=lambda frame=frame: \
           handler.handy('t1', frame)).grid(column=0, row=1)
      ttk.Button(frame, text="t3", command=lambda frame=frame: \
-          handler.handy('t3', frame)).grid(
-          column=1, row=1)
+          handler.handy('t3', frame)).grid(column=1, row=1)
 
