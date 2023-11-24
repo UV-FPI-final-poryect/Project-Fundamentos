@@ -22,12 +22,12 @@ if __name__ == '__main__':
      image = image.resize((50, 50))
      img = ImageTk.PhotoImage(image)
      lbl_img = Label(static_frame, 
-                     image = img)
+                    image = img)
      lbl_ini = Label(static_frame, 
-                     text = "Mi Restaurante",
-                     font = "Helvetica 14", 
-                     anchor="center", 
-                     justify="center")
+                    text = "Mi Restaurante",
+                    font = "Helvetica 14", 
+                    anchor="center", 
+                    justify="center")
 
      dynamic_frame = ttk.Frame(root)
      dynamic_frame.grid_rowconfigure(0, weight=1)
