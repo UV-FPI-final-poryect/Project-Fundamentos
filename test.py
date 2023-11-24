@@ -29,12 +29,14 @@ if __name__ == '__main__':
                     justify="center")
 
      dynamic_frame = ttk.Frame(root)
-   
 
      static_frame.grid(column=0, row=0, sticky="nwes", pady=30)
-     dynamic_frame.grid(column=0, row=1, sticky="nwe")
+     dynamic_frame.grid(column=0, row=1, sticky="nwes")
      lbl_img.grid(column=0, row=0, sticky="nwes")
      lbl_ini.grid(column=0, row=1, sticky="nwes")
+
+     #! aqui ingresan la opcion en el primer parametro, recuerden agregarla
+     #! al diccionario templ_dic en el archivo template_handler.py
 
      templ_handler('initial', dynamic_frame)
 

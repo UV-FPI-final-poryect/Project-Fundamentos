@@ -10,11 +10,24 @@ templ_dic = {'initial':initial_template,
             'main_menu':main_menu_template
             }
 
+def grid_rows_columns_config(dynamic_frame, ratio):
+     columns, rows = dynamic_frame.grid_size()
+     for i in range(rows):
+          dynamic_frame.grid_rowconfigure(i, weight=ratio)
+     for j in range(columns):
+          dynamic_frame.grid_columnconfigure(j, weight=ratio)
+
+
 def templ_handler(choice, dynamic_frame):
-  for widget in dynamic_frame.winfo_children():
-    widget.destroy()
-  
-  temp_chosen = templ_dic[choice]
-  temp_chosen(dynamic_frame)
+     
+
+     for widget in dynamic_frame.winfo_children():
+          widget.destroy()
+     grid_rows_columns_config(dynamic_frame, 0)
+     
+     temp_chosen = templ_dic[choice]
+     temp_chosen(dynamic_frame)
+
+     grid_rows_columns_config(dynamic_frame, 1)
 
 
