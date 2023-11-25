@@ -16,7 +16,7 @@ def initial_template(dynamic_frame):
                     una experiencia gastronómica excepcional.
                     """)
     lbl_intro_txt = Label(dynamic_frame, text = intro_txt,\
-        font = font, anchor="center", justify="center")
+        font = font, anchor="center", justify="center", background='gray85')
     bttn_signin = Button(dynamic_frame, text = "Registrarse", \
         font = font, bg = "gray", fg = "white", command = lambda frame\
             =dynamic_frame: utils.template_handler.templ_handler\
@@ -25,6 +25,6 @@ def initial_template(dynamic_frame):
         font = font, bg = "gray", fg = "white", command = lambda \
             frame=dynamic_frame: utils.template_handler.templ_handler\
                 ('login', frame))
-    lbl_intro_txt.grid(column=0, row=0, columnspan=2)
-    bttn_signin.grid(column=0, row=1, sticky="nsew", padx=10, pady=10)
-    bttn_login.grid(column=1, row=1, sticky="nsew", padx=10, pady=10)
+    lbl_intro_txt.grid(column=0, row=0, columnspan=2,padx=20, pady=20)
+    bttn_signin.grid(column=0, row=1, sticky="nsew", padx=20, pady=20)
+    bttn_login.grid(column=1, row=1, sticky="nsew", padx=20, pady=20)
