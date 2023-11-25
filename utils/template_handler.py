@@ -26,13 +26,15 @@ def grid_rows_columns_config(dynamic_frame, ratio):
   for i in range(rows):
     dynamic_frame.grid_rowconfigure(i, weight=ratio)
   for j in range(columns):
-          dynamic_frame.grid_columnconfigure(j, weight=ratio)
+    dynamic_frame.grid_columnconfigure(j, weight=ratio)
 
 
 def templ_handler(choice, dynamic_frame):
   for widget in dynamic_frame.winfo_children():
     widget.destroy()
   grid_rows_columns_config(dynamic_frame, 0)
+  
   temp_chosen = templ_dic[choice]
   temp_chosen(dynamic_frame)
+  
   grid_rows_columns_config(dynamic_frame, 1)

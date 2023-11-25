@@ -29,8 +29,8 @@ def main_menu_template(dynamic_frame):
                   fg="white")
       button_logout = Button(dynamic_frame, text="Cerrar sesión",\
             font=font, fg="white")
-      lbl_title.grid(column=0, row=0, pady=10)
-      button_dish_option.grid(column=0, row=1, pady=10)
-      button_table_option.grid(column=0, row=2, pady=10)
-      button_order_option.grid(column=0, row=3, pady=10)
-      button_logout.grid(column=0, row=4, pady=10)
+      lbl_title.grid(column=0, row=0, padx=40, pady=10)
+      button_dish_option.grid(column=0, row=1,pady=5)
+      button_table_option.grid(column=0, row=2,pady=5)
+      button_order_option.grid(column=0, row=3,pady=5)
+      button_logout.grid(column=0, row=4,pady=(5, 10))
