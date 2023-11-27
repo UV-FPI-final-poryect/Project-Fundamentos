@@ -1,29 +1,22 @@
 from tkinter import *
-import tkinter as tk
+from tkinter import ttk
 from PIL import Image, ImageTk
 import utils.template_handler
 
 
 def create_table(dynamic_frame):
-    font = "Helvetica 11"
-    title_font = "Helvetica 14"
-    background = 'gray75'
-    lbl_title = tk.Label(dynamic_frame, text="Agregar Mesa",
-                        font=title_font, background=background)
-    lbl_date = tk.Label(dynamic_frame, text="Date", font=font,
-                        background=background)
+
+    lbl_title = ttk.Label(dynamic_frame, text="Agregar Mesa")
+    lbl_date = ttk.Label(dynamic_frame, text="Date")
     date = StringVar()
-    entry_date = Entry(dynamic_frame, textvariable=date)
-    lbl_hour = tk.Label(dynamic_frame, text="Hour", font=font,
-                        background=background)
+    entry_date = ttk.Entry(dynamic_frame, textvariable=date)
+    lbl_hour = ttk.Label(dynamic_frame, text="Hour")
     hour = StringVar()
-    entry_hour = Entry(dynamic_frame, textvariable=hour)
-    lbl_people = tk.Label(dynamic_frame, text="Numbers of People",
-                        font=font, background=background)
+    entry_hour = ttk.Entry(dynamic_frame, textvariable=hour)
+    lbl_people = ttk.Label(dynamic_frame, text="Numbers of People")
     people = StringVar()
-    entry_people = Entry(dynamic_frame, textvariable=people)
-    button_add = Button(dynamic_frame, text = "Add", font = font,
-                        bg = "gray", fg = "white",
+    entry_people = ttk.Entry(dynamic_frame, textvariable=people)
+    button_add = ttk.Button(dynamic_frame, text = "Add",
                         command=lambda frame=dynamic_frame :\
             utils.template_handler.templ_handler('menu_tables', frame))
 
