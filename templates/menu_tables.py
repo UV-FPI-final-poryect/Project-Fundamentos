@@ -5,27 +5,21 @@ from PIL import Image, ImageTk
 import utils.template_handler
 
 def menu_tables_template(dynamic_frame):
-        font = "Helvetica 11"
-        title_font = "Helvetica 14"
-        background = 'gray75'
-        lbl_title = Label(dynamic_frame,
-                        text="Gestion de Mesas",
-                        font=title_font,
-                        background=background)
-        button_add_table = Button(dynamic_frame, text="Add Tables",\
-                font=font, bg="gray", fg="white", command = lambda \
+
+        lbl_title = ttk.Label(dynamic_frame,
+                        text="Gestion de Mesas")
+        button_add_table = ttk.Button(dynamic_frame, text="Add Tables",
+                                command = lambda \
                         frame=dynamic_frame: utils.template_handler.\
                                 templ_handler('add_table', frame))
-        button_del_table = Button(dynamic_frame, text="Delete Tables",\
-                font=font, bg="gray", fg="white", command = lambda \
+        button_del_table = ttk.Button(dynamic_frame, text="Delete Tables",
+                                command = lambda \
                         frame=dynamic_frame: utils.template_handler.\
                                 templ_handler('del_table', frame))
-        button_upd_table = Button(dynamic_frame, text="Update Tables",\
-                font=font, bg="gray", fg="white", command = lambda \
+        button_upd_table = ttk.Button(dynamic_frame, text="Update Tables", command = lambda \
                         frame=dynamic_frame: utils.template_handler.\
                                 templ_handler('upd_table', frame))
-        button_return = Button(dynamic_frame, text = "BACK", font=font,
-                        bg="gray", fg="white",command = lambda \
+        button_return = ttk.Button(dynamic_frame, text = "BACK", command = lambda \
                         frame=dynamic_frame: utils.template_handler.\
                                 templ_handler('main_menu', frame))
 
