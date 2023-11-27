@@ -1,48 +1,36 @@
 from tkinter import *
-import tkinter as tk
-from PIL import Image, ImageTk
+from tkinter import ttk
 import utils.template_handler
 
 
 def signin_template(dynamic_frame):
     #   Segunda  Ventana | Registro
-    font = "Helvetica 11"
-    title_font = "Helvetica 14"
-    background = 'gray75'
-    lbl_title = tk.Label(dynamic_frame,
-                         text="Registro nuevo usuario",
-                         font=title_font,
-                         background=background)
-    lbl_subtitle_email = tk.Label(dynamic_frame,
-                                  text="Email",
-                                  font=font,
-                                  background=background)
-    lbl_subtitle_pass = tk.Label(dynamic_frame,
-                                 text="Contraseña",
-                                 font=font,
-                                 background=background)
-    lbl_subtitle_confirm_pass = tk.Label(dynamic_frame,
-                                         text="Confirmar Contraseña",
-                                         font=font,
-                                         background=background)
+
+    lbl_title = ttk.Label(dynamic_frame,
+                          text="Registro nuevo usuario",
+                          font=("default", 12, "bold"))
+    lbl_subtitle_email = ttk.Label(dynamic_frame,
+                                  text="Email")
+    lbl_subtitle_pass = ttk.Label(dynamic_frame,
+                                 text="Contraseña",)
+    lbl_subtitle_confirm_pass = ttk.Label(dynamic_frame,
+                                         text="Confirmar Contraseña")
     user_email = StringVar()
     user_pass = StringVar()
     user_confirm_pass = StringVar()
 
-    entry_email = Entry(dynamic_frame,
+    entry_email = ttk.Entry(dynamic_frame,
                         textvariable=user_email)
-    entry_passw = Entry(dynamic_frame,
+    entry_passw = ttk.Entry(dynamic_frame,
                         textvariable=user_pass,
                         show="*")
-    entry_confirm_pass = Entry(dynamic_frame,
+    entry_confirm_pass = ttk.Entry(dynamic_frame,
                                textvariable=user_confirm_pass,
                                show="*")
-    button_signin = Button(
+    button_signin = ttk.Button(
         dynamic_frame,
         text="Registrarse",
-        font=font,
-        bg="gray",
-        fg="white",
+        style="Accent.TButton",
         command=lambda frame=dynamic_frame: utils.template_handler.templ_handler(
             'initial',
             frame))  # pendiente funcion que guarde en la base de datos

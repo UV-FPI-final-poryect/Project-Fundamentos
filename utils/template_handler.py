@@ -3,13 +3,16 @@ from templates.main_templates.login_template import login_template
 from templates.main_templates.signin_template import signin_template
 from templates.main_templates.main_menu_template import main_menu_template
 from templates.dish_templates.dishes_management_template import dishes_management_template
-
+from templates.dish_templates.create_dish_template import create_dish_template
+from templates.dish_templates.delete_dish_template import delete_dish_template
 
 templ_dic = {'initial': initial_template,
              'login': login_template,
              'signin': signin_template,
              'main_menu': main_menu_template,
-             'dishes_management':dishes_management_template
+             'dishes_management':dishes_management_template,
+             'create_dish':create_dish_template,
+             'delete_dish':delete_dish_template
              }
 
 
