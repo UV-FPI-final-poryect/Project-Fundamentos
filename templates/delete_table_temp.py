@@ -1,33 +1,16 @@
 from tkinter import *
 import tkinter as tk
-from PIL import Image, ImageTk
 import utils.template_handler
+from tkinter import messagebox
 
-def yes(dynamic_frame):
-    window.destroy()
-    utils.template_handler.templ_handler('menu_tables', dynamic_frame)
 
 def warning(dynamic_frame):
-    global window
-    window = tk.Tk()
-    window.title("Confirm Delete")
-    window.geometry("500x200+500+200")
-    window.resizable()
-    message = tk.Label(window, text = \
-        """
-        Are you sure you want to delete this table permanently?
-        """,
-        font = "Helvetica 10")
-    message.pack()
-    button_no = tk.Button(window, text = "NO",\
-        font = "Helvetica 11", bg = "dimgray", fg = "white", \
-            command= window.destroy)
-    button_yes = tk.Button(window, text = "YES",\
-        font = "Helvetica 11", bg = "gray", fg = "white",command= lambda:yes(dynamic_frame))
-    button_yes.pack(pady=10)
-    button_no.pack(pady=10)
-    window.mainloop()
-
+    resultado = messagebox.askokcancel("Warning",\
+        "Are you sure you want to delete this table permanently?")
+    if resultado:
+        utils.template_handler.templ_handler('menu_tables', dynamic_frame)
+    else:
+        print("La acción fue cancelada.")
 
 
 def delete_table(dynamic_frame):
