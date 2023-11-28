@@ -18,9 +18,7 @@ def dishes_management_template(dynamic_frame):
                                         text="Eliminar",
                                         command=lambda frame=dynamic_frame :utils.template_handler.templ_handler('delete_dish', frame))
     button_update_dish = ttk.Button(dynamic_frame,
-                                 text="Actualizar")
-# command=lambda frame=dynamic_frame :
-# utils.template_handler.templ_handler('update_dish', frame)) #pendiente funcion
+                                 text="Actualizar", command=lambda frame=dynamic_frame :utils.template_handler.templ_handler('update_dish', frame)) 
     button_back = ttk.Button(dynamic_frame, 
                             text="Atrás",
                             style="Accent.TButton",

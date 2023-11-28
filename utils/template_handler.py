@@ -5,6 +5,7 @@ from templates.main_templates.main_menu_template import main_menu_template
 from templates.dish_templates.dishes_management_template import dishes_management_template
 from templates.dish_templates.create_dish_template import create_dish_template
 from templates.dish_templates.delete_dish_template import delete_dish_template
+from templates.dish_templates.update_dish_template import update_dish_template
 
 templ_dic = {'initial': initial_template,
              'login': login_template,
@@ -12,7 +13,8 @@ templ_dic = {'initial': initial_template,
              'main_menu': main_menu_template,
              'dishes_management':dishes_management_template,
              'create_dish':create_dish_template,
-             'delete_dish':delete_dish_template
+             'delete_dish':delete_dish_template,
+             'update_dish':update_dish_template,
              }
 
 
@@ -23,11 +25,13 @@ def grid_rows_columns_config(dynamic_frame, ratio):
     for j in range(columns):
         dynamic_frame.grid_columnconfigure(j, weight=ratio)
 
+def destroy_widgets(dynamic_frame):
+    for widget in dynamic_frame.winfo_children():
+            widget.destroy()
 
 def templ_handler(choice, dynamic_frame):
 
-    for widget in dynamic_frame.winfo_children():
-        widget.destroy()
+    destroy_widgets(dynamic_frame)
     grid_rows_columns_config(dynamic_frame, 0)
 
     temp_chosen = templ_dic[choice]
