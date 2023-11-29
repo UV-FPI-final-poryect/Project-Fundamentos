@@ -2,13 +2,14 @@ from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
 
-from utils.change_path_for_img import change_path
+from utils.change_path_for_poject import change_path
 from utils.template_handler import templ_handler
 
 if __name__ == '__main__':
     change_path()
     root = Tk()
     root.title("SSJ Restorant")
+    root.resizable(False, False)
     root.iconbitmap('../multimedia/forkandknife.ico')
 
     #Se importa y aplica tema forest-dark
@@ -24,13 +25,13 @@ if __name__ == '__main__':
         background=last_plain_bg)
 
     frame_container = ttk.Frame(root)
-    frame_container.grid_columnconfigure(0, weight=1, minsize=500)
-    frame_container.grid_rowconfigure(0, weight=1, minsize=110)
+    frame_container.grid_columnconfigure(0, weight=1, minsize=700)
+    frame_container.grid_rowconfigure(0, weight=1, minsize=150)
     frame_container.grid_rowconfigure(1, weight=1, minsize=400)
 
     static_frame = ttk.Frame(frame_container,style=frame_style)
     image = Image.open("../multimedia/Logo.png")
-    image = image.resize((50, 50))
+    image = image.resize((70, 90))
     img = ImageTk.PhotoImage(image)
     lbl_img = ttk.Label(static_frame,
                     image=img,
@@ -50,7 +51,7 @@ if __name__ == '__main__':
     dynamic_content_frame.grid(column=0, row=1, sticky="nwes")
     dynamic_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
     lbl_img.place(relx=0.5, rely=0.5, anchor=CENTER)
-    lbl_ini.place(relx=0.5, rely=0.9, anchor=CENTER)
+    lbl_ini.place(relx=0.5, rely=0.95, anchor=CENTER)
 
     templ_handler('initial', dynamic_frame)
 

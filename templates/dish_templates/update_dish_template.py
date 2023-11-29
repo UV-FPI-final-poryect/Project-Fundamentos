@@ -2,23 +2,25 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import utils.template_handler
-import templates.dish_templates.MATRIZ_EJEMPLO as MATRIX
+import data_access_tools.dishes_da as dishes
 from templates.dish_templates.save_dish_changes_template import save_dish_changes_template
 
 
 columns_names = ["Código", "Nombre", "Precio", "Descripción", "Disponible"] 
 
 def warning(dynamic_frame, tree):
-    result = messagebox.askokcancel("Confirmación",\
-        "¿Es este el plato que deseas modificar?")
-    if result:
+    try:
         selected = tree.selection()
         if selected:
-            dish_to_update = tree.item(selected)['values']
-
-        save_dish_changes_template(dynamic_frame, dish_to_update)
-    else:
-        print("La acción fue cancelada.")
+            result = messagebox.askokcancel("Confirmación",\
+                "¿Es este el plato que deseas modificar?")
+            if result:
+                dish_to_update = tree.item(selected)['values']
+                save_dish_changes_template(dynamic_frame, dish_to_update)
+        else:
+            messagebox.showerror('Sin selección', 'Asegurate de haber seleccionado una fila para modificar.')
+    except Exception:
+        messagebox.showerror('No se puedo completar la acción', 'No se ha logrado realizar el proceso de actualización, llama al proveedor para asesoria')
 
 
 def update_dish_template(dynamic_frame):
@@ -30,8 +32,15 @@ def update_dish_template(dynamic_frame):
     
     for col in columns_names:
         tree.heading(col, text=col)
-        tree.column(col, anchor="center", width=(len(col)*10))
-    for row in MATRIX.matriz_ejemplo:
+        if (col == "Nombre"):
+            tree.column(col, anchor="center", width=(120))
+            continue
+        if (col == "Descripción"):
+            tree.column(col, anchor="center", width=(250))
+            continue
+        tree.column(col, anchor="center", width=(55))
+    data_base_for_dishes = dishes.read_dishes()
+    for row in data_base_for_dishes:
         tree.insert("", "end", values=row)
 
     scrollbar_y = ttk.Scrollbar(dynamic_frame, orient="vertical", command=tree.yview)

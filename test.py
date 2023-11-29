@@ -2,13 +2,14 @@ from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
 
-from utils.change_path_for_img import change_path
+from utils.change_path_for_poject import change_path
 from utils.template_handler import templ_handler
 
 if __name__ == '__main__':
     change_path()
     root = Tk()
     root.title("SSJ Restorant")
+    root.resizable(False, False)
     root.iconbitmap('../multimedia/forkandknife.ico')
 
     #Se importa y aplica tema forest-dark
@@ -24,7 +25,7 @@ if __name__ == '__main__':
         background=last_plain_bg)
 
     frame_container = ttk.Frame(root)
-    frame_container.grid_columnconfigure(0, weight=1, minsize=500)
+    frame_container.grid_columnconfigure(0, weight=1, minsize=700)
     frame_container.grid_rowconfigure(0, weight=1, minsize=150)
     frame_container.grid_rowconfigure(1, weight=1, minsize=400)
 
