@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import utils.template_handler
-import data_access_tools.dishes_da as dishes
+import data_access_tools.dishes_da as tools_dishes
 from templates.dish_templates.save_dish_changes_template import save_dish_changes_template
 
 
@@ -39,7 +39,7 @@ def update_dish_template(dynamic_frame):
             tree.column(col, anchor="center", width=(250))
             continue
         tree.column(col, anchor="center", width=(55))
-    data_base_for_dishes = dishes.read_dishes()
+    data_base_for_dishes = tools_dishes.list_dishes()
     for row in data_base_for_dishes:
         tree.insert("", "end", values=row)
 

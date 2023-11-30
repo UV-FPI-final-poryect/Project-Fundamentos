@@ -1,9 +1,18 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
-
 from utils.change_path_for_poject import change_path
 from utils.template_handler import templ_handler
+
+def center_window(root):
+    root.update_idletasks()
+    ancho_ventana = root.winfo_width()
+    altura_ventana = root.winfo_height()
+
+    x_pos = (root.winfo_screenwidth() // 2) - (ancho_ventana // 2)
+    y_pos = (root.winfo_screenheight() // 2) - (altura_ventana // 2)
+
+    root.geometry('{}x{}+{}+{}'.format(ancho_ventana, altura_ventana, x_pos, y_pos))
 
 if __name__ == '__main__':
     change_path()
@@ -53,6 +62,7 @@ if __name__ == '__main__':
     lbl_img.place(relx=0.5, rely=0.5, anchor=CENTER)
     lbl_ini.place(relx=0.5, rely=0.95, anchor=CENTER)
 
+    center_window(root)
     templ_handler('initial', dynamic_frame)
 
     root.mainloop()

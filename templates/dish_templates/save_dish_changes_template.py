@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import re
 import utils.template_handler
-import databases.db_dishes as db_dishes
+import data_access_tools.dishes_da as tools_dishes
 
 
 global dish_name
@@ -25,9 +25,8 @@ def save_process(dynamic_frame, dish_to_update):
     dish_to_update[2] = dish_price
     dish_to_update[3] = dish_description
     dish_to_update[4] = dish_availability
-    list_index = dish_to_update[0]-1
-    #!!!!!!!!!!!!!!!!!!llamar backend
-    db_dishes.db_matrix[list_index] = dish_to_update
+    
+    tools_dishes.actualize_dish(dish_to_update)
     utils.template_handler.templ_handler('update_dish', dynamic_frame)
 
 def catch_dish_name(var):
@@ -63,7 +62,6 @@ def save_dish_changes_template(dynamic_frame, dish_to_update):
     global dish_price
     global dish_description
     global dish_availability
-
     entry_box_width = 25
     lbl_title = ttk.Label(dynamic_frame,
                           text="Guardar cambios - plato",

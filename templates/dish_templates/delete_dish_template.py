@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import utils.template_handler
-import data_access_tools.dishes_da as dishes
+import data_access_tools.dishes_da as tools_dishes
 
 
 columns_names = ["Código", "Nombre", "Precio", "Descripción", "Disponible"] 
@@ -16,7 +16,7 @@ def warning(dynamic_frame, tree):
             "¿Deseas elminar este plato?")
             if result:
                 dish_to_del = tree.item(selected)['values']
-                dishes.delete_dish(dish_to_del[0])
+                tools_dishes.erase_dish(dish_to_del[0])
                 utils.template_handler.templ_handler('delete_dish',dynamic_frame)
         else:
             messagebox.showerror('Sin selección', 'Asegurate de haber seleccionado una fila para eliminar.')
@@ -43,7 +43,7 @@ def delete_dish_template(dynamic_frame):
             tree.column(col, anchor="center", width=(250))
             continue
         tree.column(col, anchor="center", width=(55))
-    data_base_for_dishes = dishes.read_dishes()
+    data_base_for_dishes = tools_dishes.list_dishes()
     for row in data_base_for_dishes:
         tree.insert("", "end", values=row)
 
