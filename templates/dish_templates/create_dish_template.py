@@ -16,9 +16,7 @@ dish_description = ''
 dish_availability = ''
 
 def warning(dynamic_frame):
-
     try:
-
         result = messagebox.askokcancel("Confirmación",\
         "¿Deseas agregar este plato?")
         if result:
