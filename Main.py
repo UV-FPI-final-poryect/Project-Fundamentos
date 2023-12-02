@@ -5,7 +5,11 @@ from utils.change_path_for_poject import change_path
 from utils.template_handler import templ_handler
 
 def center_window(root):
-    #mediante este método se asegura que tkinter haya ejecutado todas las tareas pendientes para asegurar que el tamaño de la ventana ha sido definido y evitar un falso posicionamiento.
+    #mediante este método se asegura que tkinter haya ejecutado todas las tareas pendientes para asegurar
+    # que el tamaño de la ventana ha sido definido y evitar un falso posicionamiento.
+    # se utiliza para asegurarse de que las dimensiones de la ventana sean conocidas antes de realizar los cálculos
+    # para centrarla. Esto es importante porque algunos ajustes de tamaño pueden no estar completamente establecidos
+    # hasta después de que la ventana ha sido creada,
     root.update_idletasks()
     ancho_ventana = root.winfo_width()
     altura_ventana = root.winfo_height()
@@ -14,6 +18,7 @@ def center_window(root):
     y_pos = (root.winfo_screenheight() // 2) - (altura_ventana // 2)
 
     root.geometry('{}x{}+{}+{}'.format(ancho_ventana, altura_ventana, x_pos, y_pos))
+    
 
 if __name__ == '__main__':
     change_path()
@@ -47,7 +52,7 @@ if __name__ == '__main__':
                     image=img,
                     background=last_plain_bg)
     lbl_ini = ttk.Label(static_frame,
-                    text="SSJ Restaurant",
+                    text="SSJ Restorant",
                     font=("default",14, "bold"),
                     background=last_plain_bg)
 
