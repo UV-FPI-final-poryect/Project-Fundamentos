@@ -15,11 +15,6 @@ def save_process(dynamic_frame, dish_to_update):
     global dish_price
     global dish_description
     global dish_availability
-    print(dish_name, dish_price, dish_description, dish_availability)
-    print(dish_name.isspace(), dish_name == '',
-          not dish_price.isnumeric(),
-          dish_description.isspace(), dish_description == '',
-          dish_availability not in ['Si', 'No'])
     try:
         if (dish_name.isspace() or dish_name == '' or
                 not dish_price.isnumeric() or
