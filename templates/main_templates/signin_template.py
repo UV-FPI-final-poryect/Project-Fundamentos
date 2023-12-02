@@ -1,10 +1,19 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
+import re
 import utils.template_handler
+
+global user_name
+global user_pass
+global user_cofirm_pass
+
+user_name = ''
+user_pass = ''
+user_cofirm_pass = ''
 
 
 def signin_template(dynamic_frame):
-    #   Segunda  Ventana | Registro
 
     lbl_title = ttk.Label(dynamic_frame,
                           text="Registro nuevo usuario",

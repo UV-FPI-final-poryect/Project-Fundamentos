@@ -67,6 +67,6 @@ if __name__ == '__main__':
      #! al diccionario templ_dic en el archivo template_handler.py
 
     center_window(root)
-    templ_handler('create_dish', dynamic_frame)
+    templ_handler('update_dish', dynamic_frame)
 
     root.mainloop()

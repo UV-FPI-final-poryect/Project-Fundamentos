@@ -11,13 +11,13 @@ def center_window(root):
     # para centrarla. Esto es importante porque algunos ajustes de tamaño pueden no estar completamente establecidos
     # hasta después de que la ventana ha sido creada,
     root.update_idletasks()
-    ancho_ventana = root.winfo_width()
-    altura_ventana = root.winfo_height()
+    window_width = root.winfo_width()
+    window_height = root.winfo_height()
 
-    x_pos = (root.winfo_screenwidth() // 2) - (ancho_ventana // 2)
-    y_pos = (root.winfo_screenheight() // 2) - (altura_ventana // 2)
+    x_pos = (root.winfo_screenwidth() // 2) - (window_width // 2)
+    y_pos = (root.winfo_screenheight() // 2) - (window_height // 2)
 
-    root.geometry('{}x{}+{}+{}'.format(ancho_ventana, altura_ventana, x_pos, y_pos))
+    root.geometry('{}x{}+{}+{}'.format(window_width, window_height, x_pos, y_pos))
     
 
 if __name__ == '__main__':
