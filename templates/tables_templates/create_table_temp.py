@@ -4,11 +4,18 @@ from tkinter import ttk
 from tkinter import messagebox
 
 import utils.template_handler
+import data_access_tools.tables_adu as tool_table
 import re
 
 
-def save_table():
-    pass
+def save_hour():
+    global table_date
+    global table_hour
+    global table_people
+    print(type(table_date))
+    print(type(table_hour))
+    print(type(table_people))
+    tool_table.change_format_to_read(table_date, table_hour, table_people)
 
 
 def warning(dynamic_frame): # Pendiente que verifique si todos los campos estan llenos
@@ -16,29 +23,29 @@ def warning(dynamic_frame): # Pendiente que verifique si todos los campos estan 
         answer = messagebox.askokcancel("Confirmación",\
         "¿Deseas Agregar Esta Mesa?")
         if answer:
-            save_table()
+            save_hour()
             utils.template_handler.templ_handler('menu_tables', dynamic_frame)
         else:
             messagebox.showerror('Interrupción',
                 'Se ha Cancelado la Operación')
-    except Exception:
+    except Exception as e:
+        print(e)
         messagebox.showerror('No se puedo completar la acción',
         'No se ha logrado realizar el proceso de agregación, llama al proveedor para asesoria')
 
 
 def catch_date_table(var):
-    global table_date
-    if len(var)>25:
+    if len(var)>10:
         return False
-    table_date = var
+    global table_date
+    table_date = str(var)
     return True
 
-
+#width = entry_box_width, validate="key", validatecommand = (dynamic_frame.register(catch_hour_table), '%P')
 def catch_hour_table(var):
-    global table_hour
-    pattern = r'\d*'
-    if re.fullmatch(pattern, var) is None or len(var)>4:
+    if len(var)>5:
         return False
+    global table_hour
     table_hour = var
     return True
 
@@ -50,6 +57,7 @@ def catch_people_table(var):
         return False
     table_people = var
     return True
+    
 
 
 def create_table(dynamic_frame):
@@ -69,15 +77,15 @@ def create_table(dynamic_frame):
     table_hour = StringVar()
     table_people = StringVar()
 
-    entry_date_table = ttk.Entry(dynamic_frame, width = entry_box_width,
+    entry_date_table = ttk.Entry(dynamic_frame, width=entry_box_width,
                                 validate="key", validatecommand = \
-                                    (dynamic_frame.register(catch_date_table), ''))
-    entry_hour_table = ttk.Entry(dynamic_frame, width = entry_box_width,
-                                validate="key", validatecommand = 
-                                (dynamic_frame.register(catch_hour_table), '%P'))
-    entry_people_table = ttk.Entry(dynamic_frame, width = entry_box_width,
-                                validate = "key", validatecommand = 
-                                (dynamic_frame.register(catch_people_table), '%P'))
+                                    (dynamic_frame.register(catch_date_table),'%P'))
+    entry_hour_table = ttk.Entry(dynamic_frame, width=entry_box_width,
+                                validate="key", validatecommand = \
+                                    (dynamic_frame.register(catch_hour_table),'%P'))
+    entry_people_table = ttk.Entry(dynamic_frame, width=entry_box_width,
+                                validate="key", validatecommand = \
+                                    (dynamic_frame.register(catch_people_table),'%P'))
 
     button_add = ttk.Button(dynamic_frame, text="Agregar",
         style="Accent.TButton",

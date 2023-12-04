@@ -5,7 +5,7 @@ from tkinter import messagebox
 
 import utils.template_handler
 import databases.db_tables as tables
-import data_access_tools.tables_del_upd as tool_table
+import data_access_tools.tables_adu as tool_table
 
 
 def warning(dynamic_frame, tree):
