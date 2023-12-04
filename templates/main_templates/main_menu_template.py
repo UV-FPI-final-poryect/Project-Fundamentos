@@ -10,13 +10,13 @@ def main_menu_template(dynamic_frame):
     lbl_title = ttk.Label(dynamic_frame, text="Bienvenido",
                             font=("default", 12, "bold"))
 
-    button_dish_option = ttk.Button(dynamic_frame, text = "Gestión platos",
+    button_dish_option = ttk.Button(dynamic_frame, text = "Gestión Platos",
                                     command = lambda frame = dynamic_frame:\
                                         utils.template_handler.templ_handler\
                                             ('dishes_management', frame))
 # #pendiente funcion que busque en la base de datos y de acceso
     button_reserve_table_option = ttk.Button(dynamic_frame,
-                                            text = "Gestión mesas",
+                                            text = "Gestión Mesas",
                                             command = lambda frame = \
                                             dynamic_frame: utils.template_handler.\
                                                 templ_handler\
@@ -25,7 +25,7 @@ def main_menu_template(dynamic_frame):
 # utils.template_handler.templ_handler('login', frame)) #pendiente funcion
 # que busque en la base de datos y de acceso
     button_order_option = ttk.Button(dynamic_frame,
-                                text="Gestión pedidos")
+                                text="Gestión Pedidos")
 # command=lambda frame=dynamic_frame :
 # utils.template_handler.templ_handler('login', frame)) #pendiente funcion
 # que busque en la base de datos y de acceso

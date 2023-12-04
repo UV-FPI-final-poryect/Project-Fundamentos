@@ -7,11 +7,16 @@ import utils.template_handler
 import re
 
 
+def save_table():
+    pass
+
+
 def warning(dynamic_frame): # Pendiente que verifique si todos los campos estan llenos
     try:
         answer = messagebox.askokcancel("Confirmación",\
         "¿Deseas Agregar Esta Mesa?")
         if answer:
+            save_table()
             utils.template_handler.templ_handler('menu_tables', dynamic_frame)
         else:
             messagebox.showerror('Interrupción',
@@ -74,18 +79,13 @@ def create_table(dynamic_frame):
                                 validate = "key", validatecommand = 
                                 (dynamic_frame.register(catch_people_table), '%P'))
 
-    button_add = ttk.Button(
-        dynamic_frame,
-        text="Eliminar",
+    button_add = ttk.Button(dynamic_frame, text="Agregar",
         style="Accent.TButton",
         command=lambda frame=dynamic_frame: warning(frame))
 
-    button_back = ttk.Button(
-        dynamic_frame,
-        text="Atrás",
+    button_back = ttk.Button(dynamic_frame, text="Atrás",
         command=lambda frame=dynamic_frame: utils.template_handler.templ_handler(
-            'dishes_management',
-            frame))
+            'menu_tables',frame))
 
     lbl_title.grid(column=0, row=0, columnspan=2, padx=40, pady=10)
     lbl_dish_name.grid(column=0, row=1, sticky="w", padx=(20,0), pady=2)

@@ -29,8 +29,8 @@ def warning(dynamic_frame, tree):
 def delete_dish_template(dynamic_frame):
 
     lbl_title = ttk.Label(dynamic_frame,
-                          text="Eliminar plato",
-                          font=("default",12, "bold"))
+                        text="Eliminar plato",
+                        font=("default",12, "bold"))
     
     tree = ttk.Treeview(dynamic_frame, columns=columns_names, show="headings", height=9)
     
