@@ -28,13 +28,6 @@ def catch_date_table(var):
     table_date = var
     return True
 
-    # global table_date
-    # pattern = r'\d*'
-    # if re.fullmatch(pattern, var) is None or len(var)>2:
-    #     return False
-    # table_date = var
-    # return True
-
 
 def catch_hour_table(var):
     global table_hour
@@ -60,7 +53,7 @@ def create_table(dynamic_frame):
     global table_hour
     global table_people
     entry_box_width = 25
-    lbl_title = ttk.Label(dynamic_frame, text = "Agregar platos",
+    lbl_title = ttk.Label(dynamic_frame, text = "Agregar Mesa",
                         font=("default", 12, "bold"))
     lbl_dish_name = ttk.Label(dynamic_frame, text = "Fecha")
     lbl_dish_price = ttk.Label(dynamic_frame, text = "Hora")
@@ -83,7 +76,7 @@ def create_table(dynamic_frame):
 
     button_add = ttk.Button(
         dynamic_frame,
-        text="Agregar",
+        text="Eliminar",
         style="Accent.TButton",
         command=lambda frame=dynamic_frame: warning(frame))
 

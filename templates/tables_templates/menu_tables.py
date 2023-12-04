@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 import utils.template_handler
 
 def menu_tables_template(dynamic_frame):
-        lbl_title = ttk.Label(dynamic_frame, text="Gestión de platos",
+        lbl_title = ttk.Label(dynamic_frame, text="Gestión de Mesas",
                         font=("default", 12, "bold"))
 
         button_add_table = ttk.Button(dynamic_frame, text = "Agregar",
