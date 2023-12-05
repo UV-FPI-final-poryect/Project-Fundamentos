@@ -13,11 +13,11 @@ def warning(dynamic_frame, tree):
         option = tree.selection()
         if option:
             answer = messagebox.askokcancel("Advertencia",\
-        "¿Seguro quieres ELIMINAR esta de forma permanente?")
+        "¿Seguro quieres ELIMINAR esta mesa de forma permanente?")
         if answer:
-            del_table = tree.item(option)["values"]
-            print(del_table)
-            utils.template_handler.templ_handler('menu_tables',
+            del_table = tree.item(option)["values"] # Guardamos los valores de la seleccion escogida
+            tool_table.delet_table(del_table[0])
+            utils.template_handler.templ_handler('del_table',
                                                 dynamic_frame)
         else:
             messagebox.showerror('Cancelado',

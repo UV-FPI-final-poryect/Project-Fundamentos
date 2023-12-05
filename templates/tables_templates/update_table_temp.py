@@ -3,9 +3,10 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
-import utils.template_handler
+import utils.template_handler as handler
 import databases.db_tables as tables
 import data_access_tools.tables_adu as tool_table
+import templates.tables_templates.changes_table_temp as change
 
 
 def warning(dynamic_frame, tree):
@@ -16,12 +17,12 @@ def warning(dynamic_frame, tree):
         "¿Seguro quieres ACTUALIZAR esta mesa?")
         if answer:
             upd_table = tree.item(option)["values"]
-            print(upd_table)
-            utils.template_handler.templ_handler('menu_tables',
-                                                dynamic_frame)
+            change.recharge_table(dynamic_frame, upd_table)
         else:
             messagebox.showerror('Cancelado',
                                 "No se pudo realizar el proceso")
+            handler.templ_handler('upd_table',
+                                                dynamic_frame)
     except Exception:
         messagebox.showerror('Incompleto',
                             "Seleccione una Mesa para Actualizar")
@@ -52,7 +53,7 @@ def update_table(dynamic_frame):
     
     button_back = ttk.Button(dynamic_frame, text = "Atras",
                         command=lambda frame=dynamic_frame :\
-            utils.template_handler.templ_handler('menu_tables', frame))
+            handler.templ_handler('menu_tables', frame))
     button_upd = ttk.Button(dynamic_frame, text = "Actualizar",
                             style="Accent.TButton",
                             command=lambda:warning(dynamic_frame, tree))
