@@ -1,3 +1,4 @@
+import traceback
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
@@ -9,22 +10,23 @@ global dish_name
 global dish_price
 global dish_description
 global dish_availability
+OPTIONS = ('Si', 'No')
+
 
 def warning(dynamic_frame):
     try:
         result = messagebox.askokcancel("Confirmación", "¿Deseas agregar este plato?")
         if result:
-            save_process(dynamic_frame)
-        else:
-            messagebox.showerror('Sin selección', 'Asegurate de haber ingresado todos '
-                                                  'los datos solicitados.')
-    except Exception:
+            save_process()
+            utils.template_handler.templ_handler('dishes_management', dynamic_frame)
+    except:
         messagebox.showerror('No se puedo completar la acción', 'No se ha logrado realizar el proceso '
                                                                 'de agregación, procura haber ingresado datos en todos '
                                                                 'los campos, o llama al proveedor para asesoria')
+        traceback.print_exc()
 
 
-def save_process(dynamic_frame):
+def save_process():
     global dish_name
     global dish_price
     global dish_description
@@ -32,7 +34,7 @@ def save_process(dynamic_frame):
     if (dish_name.isspace() or dish_name == '' or
             not dish_price.isnumeric() or
             dish_description.isspace() or dish_description == '' or
-            dish_availability not in ['Si', 'No']):
+            dish_availability not in OPTIONS):
         raise EXCEPTION
     else:
         dish_to_create = [0,
@@ -41,7 +43,6 @@ def save_process(dynamic_frame):
                           dish_description.capitalize(),
                           dish_availability]
         tools_dishes.add_dish(dish_to_create)
-        utils.template_handler.templ_handler('dishes_management', dynamic_frame)
 
 
 def catch_dish_name(var):
@@ -111,10 +112,9 @@ def create_dish_template(dynamic_frame):
                                        validate="key",
                                        validatecommand=(dynamic_frame.register(catch_dish_description), '%P'))
 
-    options = ['Si', 'No']
     combobox_dish_availability = ttk.Combobox(dynamic_frame,
                                               width=(entry_box_width - 3),
-                                              values=options)
+                                              values=OPTIONS)
     combobox_dish_availability.bind("<<ComboboxSelected>>", catch_dish_availability)
 
     button_add = ttk.Button(

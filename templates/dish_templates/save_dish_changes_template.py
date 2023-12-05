@@ -9,6 +9,8 @@ global dish_name
 global dish_price
 global dish_description
 global dish_availability
+OPTIONS = ('Si', 'No')
+
 
 def save_process(dynamic_frame, dish_to_update):
     global dish_name
@@ -19,7 +21,7 @@ def save_process(dynamic_frame, dish_to_update):
         if (dish_name.isspace() or dish_name == '' or
                 not dish_price.isnumeric() or
                 dish_description.isspace() or dish_description == '' or
-                dish_availability not in ['Si', 'No']):
+                dish_availability not in OPTIONS):
             raise EXCEPTION
         else:
             dish_to_update[1] = dish_name.capitalize()
@@ -97,10 +99,9 @@ def save_dish_changes_template(dynamic_frame, dish_to_update):
                                        validate="key",
                                        validatecommand=(dynamic_frame.register(catch_dish_description), '%P'))
 
-    options = ['Si', 'No']
     combobox_dish_availability = ttk.Combobox(dynamic_frame,
                                               width=(entry_box_width - 3),
-                                              values=options)
+                                              values=OPTIONS)
     combobox_dish_availability.bind("<<ComboboxSelected>>", catch_dish_availability)
 
     entry_dish_name.insert(0, dish_to_update[1])

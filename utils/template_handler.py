@@ -11,10 +11,10 @@ templ_dic = {'initial': initial_template,
              'login': login_template,
              'signin': signin_template,
              'main_menu': main_menu_template,
-             'dishes_management':dishes_management_template,
-             'create_dish':create_dish_template,
-             'delete_dish':delete_dish_template,
-             'update_dish':update_dish_template,
+             'dishes_management': dishes_management_template,
+             'create_dish': create_dish_template,
+             'delete_dish': delete_dish_template,
+             'update_dish': update_dish_template,
              }
 
 
@@ -25,12 +25,13 @@ def grid_rows_columns_config(dynamic_frame, ratio):
     for j in range(columns):
         dynamic_frame.grid_columnconfigure(j, weight=ratio)
 
+
 def destroy_widgets(dynamic_frame):
     for widget in dynamic_frame.winfo_children():
-            widget.destroy()
+        widget.destroy()
+
 
 def templ_handler(choice, dynamic_frame):
-
     destroy_widgets(dynamic_frame)
     grid_rows_columns_config(dynamic_frame, 0)
 

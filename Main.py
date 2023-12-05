@@ -4,8 +4,9 @@ from PIL import Image, ImageTk
 from utils.change_path_for_poject import change_path
 from utils.template_handler import templ_handler
 
+
 def center_window(root):
-    #mediante este método se asegura que tkinter haya ejecutado todas las tareas pendientes para asegurar
+    # mediante este método se asegura que tkinter haya ejecutado todas las tareas pendientes para asegurar
     # que el tamaño de la ventana ha sido definido y evitar un falso posicionamiento.
     # se utiliza para asegurarse de que las dimensiones de la ventana sean conocidas antes de realizar los cálculos
     # para centrarla. Esto es importante porque algunos ajustes de tamaño pueden no estar completamente establecidos
@@ -14,11 +15,11 @@ def center_window(root):
     window_width = root.winfo_width()
     window_height = root.winfo_height()
 
-    x_pos = (root.winfo_screenwidth() // 2) - (window_width // 2)
-    y_pos = (root.winfo_screenheight() // 2) - (window_height // 2)
+    x = (root.winfo_screenwidth() // 2) - (window_width // 2)
+    y = (root.winfo_screenheight() // 2) - (window_height // 2)
 
-    root.geometry('{}x{}+{}+{}'.format(window_width, window_height, x_pos, y_pos))
-    
+    root.geometry('{}x{}+{}+{}'.format(window_width, window_height, x, y))
+
 
 if __name__ == '__main__':
     change_path()
@@ -27,11 +28,11 @@ if __name__ == '__main__':
     root.resizable(False, False)
     root.iconbitmap('../multimedia/forkandknife.ico')
 
-    #Se importa y aplica tema forest-dark
+    # Se llama y aplica tema forest-dark a al GUI
     root.tk.call('source', '../resources/Forest-ttk-theme-master/forest-dark.tcl')
     ttk.Style().theme_use('forest-dark')
 
-    last_plain_bg="#858585"
+    last_plain_bg = "#858585"
 
     frame_style = 'My.TFrame'
     style = ttk.Style()
@@ -44,17 +45,17 @@ if __name__ == '__main__':
     frame_container.grid_rowconfigure(0, weight=1, minsize=150)
     frame_container.grid_rowconfigure(1, weight=1, minsize=400)
 
-    static_frame = ttk.Frame(frame_container,style=frame_style)
+    static_frame = ttk.Frame(frame_container, style=frame_style)
     image = Image.open("../multimedia/Logo.png")
     image = image.resize((70, 90))
     img = ImageTk.PhotoImage(image)
     lbl_img = ttk.Label(static_frame,
-                    image=img,
-                    background=last_plain_bg)
+                        image=img,
+                        background=last_plain_bg)
     lbl_ini = ttk.Label(static_frame,
-                    text="SSJ Restorant",
-                    font=("default",14, "bold"),
-                    background=last_plain_bg)
+                        text="SSJ Restorant",
+                        font=("default", 14, "bold"),
+                        background=last_plain_bg)
 
     dynamic_content_frame = ttk.Frame(frame_container,
                                       style=frame_style)
