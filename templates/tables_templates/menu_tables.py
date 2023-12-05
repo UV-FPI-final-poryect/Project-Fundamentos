@@ -10,7 +10,7 @@ def menu_tables_template(dynamic_frame):
 
         button_add_table = ttk.Button(dynamic_frame, text = "Agregar",
                                 command=lambda frame = dynamic_frame:\
-                                        utils.template_handler.templ_handler\
+                                utils.template_handler.templ_handler\
                                                 ('add_table', frame))
         button_del_table = ttk.Button(dynamic_frame, text = "Eliminar",
                                 command = lambda frame = dynamic_frame:\
@@ -18,7 +18,7 @@ def menu_tables_template(dynamic_frame):
                                         ('del_table', frame))
         button_upd_table = ttk.Button(dynamic_frame, text = "Actualizar",
                                 command = lambda frame = dynamic_frame:\
-                                        utils.template_handler.templ_handler\
+                                utils.template_handler.templ_handler\
                                                 ('upd_table', frame)) 
         button_back = ttk.Button(dynamic_frame, text="Atrás",
                         style = "Accent.TButton",
