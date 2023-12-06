@@ -7,9 +7,9 @@ def search_user(user_to_verify):
     file_regis = open(r"../databases/registro_inicio.txt", "r")
     users_list = file_regis.read().splitlines()
     for user_row in users_list:
-        splited_user_row = user_row.split(",")
-        if user_to_verify[0] == splited_user_row[0]:
-            return splited_user_row
+        splitted_user_row = user_row.split(",")
+        if user_to_verify[0] == splitted_user_row[0]:
+            return splitted_user_row
     return None
 
 
@@ -27,22 +27,15 @@ def signin_user(user_to_create):
         raise FileExistsError
 
 
-def login_user(user_name, user_pass):
-    print(user_name)
-    file = open(r"../databases/registro_inicio.txt", "r")
-    print("Output of Readlines after reading")
-    users_list = file.read().splitlines()
-    user_matrix = []
-    print(users_list)
-    print()
-    for user_row in users_list:
-        splited_row = user_row.split(",")
-        user_matrix.append(splited_row)
-
-    print(user_matrix)
-    print()
-    file.close()
+def login_user(user_to_verify):
+    global token
+    user = search_user(user_to_verify)
+    if user is not None and user[1] == user_to_verify[1]:
+        token = True
+    else:
+        raise FileNotFoundError
 
 
 def logout_user():
-    print("chao")
+    global token
+    token = False

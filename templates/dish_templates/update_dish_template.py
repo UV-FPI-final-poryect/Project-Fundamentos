@@ -20,7 +20,7 @@ def warning(dynamic_frame, tree):
         else:
             messagebox.showerror('Sin selección', 'Asegurate de haber seleccionado una fila para modificar.')
     except Exception:
-        messagebox.showerror('No se puedo completar la acción',
+        messagebox.showerror('No se pudo completar la acción',
                              'No se ha logrado realizar el proceso de actualización, llama al proveedor para asesoria')
 
 

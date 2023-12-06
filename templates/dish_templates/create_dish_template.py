@@ -1,4 +1,3 @@
-import traceback
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
@@ -19,11 +18,11 @@ def warning(dynamic_frame):
         if result:
             save_process()
             utils.template_handler.templ_handler('dishes_management', dynamic_frame)
-    except:
-        messagebox.showerror('No se puedo completar la acción', 'No se ha logrado realizar el proceso '
-                                                                'de agregación, procura haber ingresado datos en todos '
-                                                                'los campos, o llama al proveedor para asesoria')
-        traceback.print_exc()
+    except ValueError:
+        messagebox.showerror('Faltan campos', 'Hay algún campo vacío, por favor verifica.')
+    except Exception:
+        messagebox.showerror('No se pudo completar la acción', 'No se ha logrado realizar el proceso '
+                                                               'de agregación llama al proveedor para asesoria')
 
 
 def save_process():
@@ -35,7 +34,7 @@ def save_process():
             not dish_price.isnumeric() or
             dish_description.isspace() or dish_description == '' or
             dish_availability not in OPTIONS):
-        raise EXCEPTION
+        raise ValueError
     else:
         dish_to_create = [0,
                           dish_name.capitalize(),
@@ -43,6 +42,11 @@ def save_process():
                           dish_description.capitalize(),
                           dish_availability]
         tools_dishes.add_dish(dish_to_create)
+        dish_to_create.clear()
+        dish_name = ''
+        dish_price = ''
+        dish_description = ''
+        dish_availability = ''
 
 
 def catch_dish_name(var):

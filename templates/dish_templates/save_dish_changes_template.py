@@ -22,7 +22,7 @@ def save_process(dynamic_frame, dish_to_update):
                 not dish_price.isnumeric() or
                 dish_description.isspace() or dish_description == '' or
                 dish_availability not in OPTIONS):
-            raise EXCEPTION
+            raise ValueError
         else:
             dish_to_update[1] = dish_name.capitalize()
             dish_to_update[2] = dish_price
@@ -30,10 +30,11 @@ def save_process(dynamic_frame, dish_to_update):
             dish_to_update[4] = dish_availability
             tools_dishes.actualize_dish(dish_to_update)
             utils.template_handler.templ_handler('update_dish', dynamic_frame)
+    except ValueError:
+        messagebox.showerror('Faltan campos', 'Hay algún campo vacío, por favor verifica.')
     except Exception:
         messagebox.showerror('No se puedo completar la acción', 'No se ha logrado realizar el proceso de '
-                                                                'actualización, procura haber ingresado datos en todos '
-                                                                'los campos, o llama al proveedor para asesoria')
+                                                                'actualización, llama al proveedor para asesoria')
 
 
 def catch_dish_name(var):

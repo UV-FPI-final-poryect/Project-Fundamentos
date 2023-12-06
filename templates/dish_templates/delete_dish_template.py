@@ -11,7 +11,7 @@ def warning(dynamic_frame, tree):
     try:
         selected = tree.selection()
         if selected:
-            result = messagebox.askokcancel("Confirmación", \
+            result = messagebox.askokcancel("Confirmación",
                                             "¿Deseas elminar este plato?")
             if result:
                 dish_to_del = tree.item(selected)['values']
@@ -20,7 +20,7 @@ def warning(dynamic_frame, tree):
         else:
             messagebox.showerror('Sin selección', 'Asegurate de haber seleccionado una fila para eliminar.')
     except Exception:
-        messagebox.showerror('No se puedo completar la acción',
+        messagebox.showerror('No se pudo completar la acción',
                              'No se ha logrado realizar el proceso de eliminación, llama al proveedor para asesoria')
 
 
@@ -33,10 +33,10 @@ def delete_dish_template(dynamic_frame):
 
     for col in columns_names:
         tree.heading(col, text=col)
-        if (col == "Nombre"):
+        if col == "Nombre":
             tree.column(col, anchor="center", width=120)
             continue
-        if (col == "Descripción"):
+        if col == "Descripción":
             tree.column(col, anchor="center", width=250)
             continue
         tree.column(col, anchor="center", width=55)

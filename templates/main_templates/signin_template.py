@@ -21,10 +21,8 @@ def warning(dynamic_frame):
     except ValueError:
         messagebox.showerror('Faltan campos', 'Existen campos que no cumplen con las condiciones, verificalos.')
     except Exception:
-        messagebox.showerror('No se puedo completar la acción', 'No se ha logrado realizar el proceso '
-                                                                'de registro, procura haber ingresado correctamente '
-                                                                'todos los datos en los campos solicitados '
-                                                                'o llama al proveedor para asesoria.')
+        messagebox.showerror('No se pudo completar la acción', 'No se ha logrado realizar el proceso '
+                                                               'de registro, llama al proveedor para asesoria.')
 
 
 def save_process():
@@ -39,6 +37,10 @@ def save_process():
         user_to_create = [user_email.lower(),
                           user_pass]
         tools_users.signin_user(user_to_create)
+        user_to_create.clear()
+        user_email = ''
+        user_pass = ''
+        user_confirm_pass = ''
 
 
 def catch_user_email(var):
@@ -46,7 +48,7 @@ def catch_user_email(var):
     pattern = r'[A-Za-z0-9._%+-]+@{1}(gmail|hotmail|yahoo|outlook|correounivalle.edu){1}+\.(com|co){1}'
     if re.fullmatch(pattern, var) is None or len(var) > 50:
         messagebox.showinfo('Correo no valido', 'Verifica que el correo ingresado este sin espacios '
-                                                'contenga @, sea partede un dominio válido (gmail, hotmail, yahoo, '
+                                                'contenga @, sea parte de un dominio válido (gmail, hotmail, yahoo, '
                                                 'outlook, correounivalle.edu) y termine con .com o .co')
         user_email = ''
         return False
