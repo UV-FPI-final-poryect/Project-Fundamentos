@@ -5,10 +5,10 @@ import re
 import utils.template_handler
 import data_access_tools.dishes_da as tools_dishes
 
-global dish_name
-global dish_price
-global dish_description
-global dish_availability
+dish_name = ''
+dish_price = ''
+dish_description = ''
+dish_availability = ''
 OPTIONS = ('Si', 'No')
 
 

@@ -4,8 +4,8 @@ import re
 import data_access_tools.user_auth as tools_users
 import utils.template_handler
 
-global user_email
-global user_pass
+user_email = ''
+user_pass = ''
 
 
 def verify_process(dynamic_frame):

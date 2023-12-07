@@ -4,9 +4,9 @@ import re
 import utils.template_handler
 import data_access_tools.user_auth as tools_users
 
-global user_email
-global user_pass
-global user_confirm_pass
+user_email = ''
+user_pass = ''
+user_confirm_pass = ''
 
 
 def warning(dynamic_frame):
