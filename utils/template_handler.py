@@ -18,7 +18,7 @@ templ_dic = {'initial':initial_template,
             'login':login_template,
             'signin':signin_template,
             'main_menu':main_menu_template,
-            # Juan David Anexando Opcion de gestio de los platos
+            # Juan David Anexando Opcion de gestion de los platos
             'dishes_management':dishes_management_template,
             'create_dish':create_dish_template,
             'delete_dish':delete_dish_template,
