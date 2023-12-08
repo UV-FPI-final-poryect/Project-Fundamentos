@@ -1,31 +1,46 @@
 from tkinter import ttk
 from tkinter import messagebox
+
+import datetime as dt
 import re
 import utils.template_handler
 import data_access_tools.tables_adu as tool_table
 
+
 global table_date
 global table_hour
-global table_people
+global people
 
 
-def save_hour():
+def save_hour(dynamic_frame):
     global table_date
     global table_hour
-    global table_people
-    print(type(table_date))
-    print(type(table_hour))
-    print(type(table_people))
-    tool_table.change_format_to_read(table_date, table_hour, table_people)
+    global people
+    date_today = dt.datetime.now()
+    try:
+        date = dt.datetime.strptime(table_date, "%d-%m-%Y")
+        hour = dt.datetime.strptime(table_hour, "%H:%M")
+        if date_today <= date:
+            warning(dynamic_frame, date, hour, people)
+        else:
+            messagebox.showinfo('Actualizar', 'La fecha esta vencida')
+    except Exception:
+        messagebox.showerror('Error',
+                'Formato Fecha u Hora Incorrecto')
 
 
-def warning(dynamic_frame):  # Pendiente que verifique si todos los campos estan llenos
+
+def warning(dynamic_frame, date, hour, people): # Pendiente que verifique si todos los campos estan llenos
+
     try:
         answer = messagebox.askokcancel("Confirmación",
                                         "¿Deseas Agregar Esta Mesa?")
         if answer:
-            save_hour()
-            utils.template_handler.templ_handler('menu_tables', dynamic_frame)
+            tool_table.change_format_to_read(date,
+                                            hour,
+                                            people)
+            utils.template_handler.templ_handler('menu_tables',
+                                                dynamic_frame)
         else:
             messagebox.showerror('Interrupción',
                                  'Se ha Cancelado la Operación')
@@ -52,11 +67,11 @@ def catch_hour_table(var):
 
 
 def catch_people_table(var):
-    global table_people
+    global people
     pattern = r'\d*'
     if re.fullmatch(pattern, var) is None or len(var) > 2:
         return False
-    table_people = var
+    people = var
     return True
 
 

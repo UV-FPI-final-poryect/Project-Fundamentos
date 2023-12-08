@@ -6,6 +6,7 @@ def get_matriz():
 
 
 def change_format_to_read(userdate, userhour, people):
+
     caracter = '/', '-', ';'
     new_date = ''
     new_hour = ''
@@ -20,6 +21,9 @@ def change_format_to_read(userdate, userhour, people):
             new_hour += ':'
             continue
         new_hour += j  # Guardamos en una variable los cambios
+
+    new_date = userdate.strftime("%d-%m-%Y")
+    new_hour = userhour.strftime("%H:%M")
     save_data_table(new_date, new_hour, people)
 
 
