@@ -5,12 +5,20 @@ from utils.change_path_for_poject import change_path
 from utils.template_handler import templ_handler
 
 
+"""
+este es el módulo principal, donde se genera la interfaz con la que se trabaja a lo largo del proyecto
+"""
+
+
 def center_window(root):
-    # mediante este método se asegura que tkinter haya ejecutado todas las tareas pendientes para asegurar
-    # que el tamaño de la ventana ha sido definido y evitar un falso posicionamiento.
-    # se utiliza para asegurarse de que las dimensiones de la ventana sean conocidas antes de realizar los cálculos
-    # para centrarla. Esto es importante porque algunos ajustes de tamaño pueden no estar completamente establecidos
-    # hasta después de que la ventana ha sido creada,
+    """
+    Centra la ventana principal de la interfaz en la pantalla del usuario.
+
+    el método update_idletasks() se asegura que tkinter haya ejecutado todas las tareas pendientes para asegurar que el
+    tamaño de la ventana ha sido definido y evitar un falso posicionamiento.
+
+    :param root: top level widget o ventana creada para el proyecto
+    """
     root.update_idletasks()
     window_width = root.winfo_width()
     window_height = root.winfo_height()
@@ -22,6 +30,7 @@ def center_window(root):
 
 
 if __name__ == '__main__':
+
     change_path()
     root = Tk()
     root.title("SSJ Restorant")
