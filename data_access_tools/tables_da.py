@@ -37,8 +37,6 @@ def save_data_table(date, hour, people):
     new_table[1] = str(date)
     new_table[2] = str(hour)
     new_table[3] = people
-    #############//////////////????????????????/////////////
-    print(new_table)
     tables_matriz.tables.append(new_table)
 
 

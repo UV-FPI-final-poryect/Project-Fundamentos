@@ -39,28 +39,29 @@ def warning(dynamic_frame):  # Pendiente que verifique si todos los campos estan
     global table_hour
     global people
 
-    # try:
-    answer = messagebox.askokcancel("Confirmación",
-                                    "¿Deseas Agregar Esta Mesa?")
-    if answer:
-        # tool_table.change_format_to_read(table_date,
-        #                                  table_hour,
-        #                                  people)
-        save_hour()
-        utils.template_handler.templ_handler('menu_tables',
-                                             dynamic_frame)
-    else:
-        messagebox.showerror('Interrupción',
-                             'Se ha Cancelado la Operación')
+    try:
+        answer = messagebox.askokcancel("Confirmación",
+                                        "¿Deseas Agregar Esta Mesa?")
+        if answer:
+            # tool_table.change_format_to_read(table_date,
+            #                                  table_hour,
+            #                                  people)
+            save_hour()
+            utils.template_handler.templ_handler('menu_tables',
+                                                 dynamic_frame)
+        else:
+            messagebox.showerror('Interrupción',
+                                 'Se ha Cancelado la Operación')
 
-    # except ValueError:
-    #     messagebox.showerror('Falta alguno de los campos',
-    #                          'Revisa que todos los campos esten correctos y se hayan guardado bien, e intenta nuevamente')
+    except ValueError:
+        messagebox.showerror('Falta alguno de los campos',
+                             'Revisa que todos los campos esten correctos y se hayan guardado bien, e intenta '
+                             'nuevamente')
 
-    # except Exception as e:
-    #     print(e)
-    #     messagebox.showerror('No se puedo completar la acción',
-    #                          'No se ha logrado realizar el proceso de agregación, llama al proveedor para asesoria')
+    except Exception as e:
+        print(e)
+        messagebox.showerror('No se puedo completar la acción',
+                             'No se ha logrado realizar el proceso de agregación, llama al proveedor para asesoria')
 
 
 def catch_date_table(var):

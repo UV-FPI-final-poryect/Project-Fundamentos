@@ -1,57 +1,97 @@
 from tkinter import ttk
+from tkinter import messagebox
+import datetime as dt
 import re
 import utils.template_handler
 import data_access_tools.tables_da as tool_table
 
 table_date = ''
 table_hour = ''
-table_people = 0
+people = ''
 
 
 def save_change(frame, upd_table):
     global table_date
     global table_hour
-    global table_people
+    global people
+    try:
+        if (table_date == '' or
+                table_hour == '' or
+                people == ''):
+            raise ValueError
+        else:
 
-    upd_table[1] = table_date
-    upd_table[2] = table_hour
-    upd_table[3] = table_people
+            upd_table[1] = table_date
+            upd_table[2] = table_hour
+            upd_table[3] = people
 
-    tool_table.updat_table(upd_table)
-    utils.template_handler.templ_handler('upd_table', frame)
+            tool_table.updat_table(upd_table)
+            utils.template_handler.templ_handler('upd_table', frame)
+    except ValueError:
+        messagebox.showerror('Falta alguno de los campos',
+                             'Revisa que todos los campos esten correctos y se hayan guardado bien, e intenta '
+                             'nuevamente')
+
+    except Exception as e:
+        print(e)
+        messagebox.showerror('No se puedo completar la acción',
+                             'No se ha logrado realizar el proceso de actualización, llama al proveedor para asesoria')
 
 
 def catch_date_table(var):
-    if len(var) > 10:
-        return False
     global table_date
-    table_date = str(var)
-    return True
-
-
-# width = entry_box_width, validate="key", validatecommand = (dynamic_frame.register(catch_hour_table), '%P')
-def catch_hour_table(var):
-    if len(var) > 5:
+    try:
+        pending_date = dt.datetime.strptime(var, "%Y-%m-%d")
+        if len(var) != 10 or pending_date.date() < dt.datetime.today().date():
+            table_date = ""
+            raise ValueError
+        else:
+            table_date = pending_date.date()
+            return True
+    except ValueError:
+        messagebox.showerror('Fecha no válida',
+                             'El formato de fecha no es aceptado, recuerda que debe ser aaaa-mm-dd'
+                             ' y que no sea una fecha anterior al día presente')
         return False
+
+
+def catch_hour_table(var):
+    global table_date
     global table_hour
-    table_hour = var
-    return True
+    try:
+        datetime_format = str(table_date) + ' ' + var
+        pending_hour = dt.datetime.strptime(datetime_format, "%Y-%m-%d %H:%M")
+        if len(var) != 5 or pending_hour < dt.datetime.now():
+            table_hour = ""
+            raise ValueError
+        else:
+            table_hour = pending_hour.time().strftime('%H:%M')
+            return True
+    except ValueError:
+        messagebox.showerror('Hora no válida',
+                             'El formato de hora no es aceptado, recuerda que debe ser hh:mm'
+                             ' y que no sea una hora anterior al día presente, ten en cuenta que se maneja'
+                             ' hora militar de las 00:00 hasta las 23:59 horas y que debes de ingresar primero'
+                             ' la fecha')
+        return False
 
 
 def catch_people_table(var):
-    global table_people
+    global people
+    people = ''
     pattern = r'\d*'
-    if re.fullmatch(pattern, var) is None or len(var) > 2:
+    if re.fullmatch(pattern, var) is None:
         return False
-    table_people = var
-    return True
+    else:
+        people = var
+        return True
 
 
 def recharge_table(dynamic_frame, upd_table):
     utils.template_handler.destroy_widgets(dynamic_frame)
     global table_date
     global table_hour
-    global table_people
+    global people
     entry_box_width = 25
     lbl_title = ttk.Label(dynamic_frame,
                           text="Guardar Cambios",
@@ -65,11 +105,11 @@ def recharge_table(dynamic_frame, upd_table):
 
     entry_date_table = ttk.Entry(dynamic_frame,
                                  width=entry_box_width,
-                                 validate="key",
+                                 validate="focusout",
                                  validatecommand=(dynamic_frame.register(catch_date_table), '%P'))
     entry_hour_table = ttk.Entry(dynamic_frame,
                                  width=entry_box_width,
-                                 validate="key",
+                                 validate="focusout",
                                  validatecommand=(dynamic_frame.register(catch_hour_table), '%P'))
     entry_people_table = ttk.Entry(dynamic_frame,
                                    width=entry_box_width,
@@ -82,10 +122,10 @@ def recharge_table(dynamic_frame, upd_table):
 
     table_date = upd_table[1]
     table_hour = upd_table[2]
-    table_people = upd_table[3]
+    people = upd_table[3]
 
     button_add = ttk.Button(dynamic_frame,
-                            text="Agregar",
+                            text="Actualizar",
                             style="Accent.TButton",
                             command=lambda: save_change(dynamic_frame, upd_table))
 

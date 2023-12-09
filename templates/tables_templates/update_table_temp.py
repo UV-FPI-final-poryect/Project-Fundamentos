@@ -17,8 +17,7 @@ def warning(dynamic_frame, tree):
                 upd_table = tree.item(option)["values"]
                 change.recharge_table(dynamic_frame, upd_table)
         else:
-            messagebox.showerror('Cancelado',
-                                 "No se pudo realizar el proceso")
+            messagebox.showerror('Sin selección', 'Asegurate de haber seleccionado una fila para modificar.')
             handler.templ_handler('upd_table',
                                   dynamic_frame)
     except Exception:
