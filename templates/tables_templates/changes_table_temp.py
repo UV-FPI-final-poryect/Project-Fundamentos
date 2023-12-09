@@ -1,7 +1,7 @@
 from tkinter import ttk
 import re
 import utils.template_handler
-import data_access_tools.tables_adu as tool_table
+import data_access_tools.tables_da as tool_table
 
 table_date = ''
 table_hour = ''

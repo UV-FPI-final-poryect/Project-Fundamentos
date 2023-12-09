@@ -4,95 +4,133 @@ from tkinter import messagebox
 import datetime as dt
 import re
 import utils.template_handler
-import data_access_tools.tables_adu as tool_table
+import data_access_tools.tables_da as tool_table
+
+table_date = ''
+table_hour = ''
+people = ''
 
 
-global table_date
-global table_hour
-global people
-
-
-def save_hour(dynamic_frame):
+def save_hour():
     global table_date
     global table_hour
     global people
-    date_today = dt.datetime.now()
-    try:
-        date = dt.datetime.strptime(table_date, "%d-%m-%Y")
-        hour = dt.datetime.strptime(table_hour, "%H:%M")
-        if date_today <= date:
-            warning(dynamic_frame, date, hour, people)
-        else:
-            messagebox.showinfo('Actualizar', 'La fecha esta vencida')
-    except Exception:
-        messagebox.showerror('Error',
-                'Formato Fecha u Hora Incorrecto')
+    # date_today = dt.datetime.now()
+    # try:
+    # date = dt.datetime.strptime(table_date, "%d-%m-%Y")
+    # hour = dt.datetime.strptime(table_hour, "%H:%M")
+    if (table_date == '' or
+            table_hour == '' or
+            people == ''):
+        raise ValueError
+    else:
+
+        ############?????????????????????////////////////////////////
+        print(table_date, table_hour, people)
+        tool_table.save_data_table(table_date, table_hour, people)
+        # messagebox.showinfo('Actualizar', 'La fecha esta vencida')
+    # except Exception:
+    #     messagebox.showerror('Error',
+    #                          'Formato Fecha u Hora Incorrecto')
 
 
+def warning(dynamic_frame):  # Pendiente que verifique si todos los campos estan llenos
+    global table_date
+    global table_hour
+    global people
 
-def warning(dynamic_frame, date, hour, people): # Pendiente que verifique si todos los campos estan llenos
+    # try:
+    answer = messagebox.askokcancel("Confirmación",
+                                    "¿Deseas Agregar Esta Mesa?")
+    if answer:
+        # tool_table.change_format_to_read(table_date,
+        #                                  table_hour,
+        #                                  people)
+        save_hour()
+        utils.template_handler.templ_handler('menu_tables',
+                                             dynamic_frame)
+    else:
+        messagebox.showerror('Interrupción',
+                             'Se ha Cancelado la Operación')
 
-    try:
-        answer = messagebox.askokcancel("Confirmación",
-                                        "¿Deseas Agregar Esta Mesa?")
-        if answer:
-            tool_table.change_format_to_read(date,
-                                            hour,
-                                            people)
-            utils.template_handler.templ_handler('menu_tables',
-                                                dynamic_frame)
-        else:
-            messagebox.showerror('Interrupción',
-                                 'Se ha Cancelado la Operación')
-    except Exception as e:
-        print(e)
-        messagebox.showerror('No se puedo completar la acción',
-                             'No se ha logrado realizar el proceso de agregación, llama al proveedor para asesoria')
+    # except ValueError:
+    #     messagebox.showerror('Falta alguno de los campos',
+    #                          'Revisa que todos los campos esten correctos y se hayan guardado bien, e intenta nuevamente')
+
+    # except Exception as e:
+    #     print(e)
+    #     messagebox.showerror('No se puedo completar la acción',
+    #                          'No se ha logrado realizar el proceso de agregación, llama al proveedor para asesoria')
 
 
 def catch_date_table(var):
-    if len(var) > 10:
-        return False
     global table_date
-    table_date = str(var)
-    return True
+    try:
+        pending_date = dt.datetime.strptime(var, "%Y-%m-%d")
+        if len(var) != 10 or pending_date.date() < dt.datetime.today().date():
+            table_date = ""
+            raise ValueError
+        else:
+            table_date = pending_date.date()
+            return True
+    except ValueError:
+        messagebox.showerror('Fecha no válida',
+                             'El formato de fecha no es aceptado, recuerda que debe ser aaaa-mm-dd'
+                             ' y que no sea una fecha anterior al día presente')
+        return False
 
 
 def catch_hour_table(var):
-    if len(var) > 5:
-        return False
+    global table_date
     global table_hour
-    table_hour = var
-    return True
+    try:
+        datetime_format = str(table_date) + ' ' + var
+        pending_hour = dt.datetime.strptime(datetime_format, "%Y-%m-%d %H:%M")
+        if len(var) != 5 or pending_hour < dt.datetime.now():
+            table_hour = ""
+            raise ValueError
+        else:
+            table_hour = pending_hour.time().strftime('%H:%M')
+            return True
+    except ValueError:
+        messagebox.showerror('Hora no válida',
+                             'El formato de hora no es aceptado, recuerda que debe ser hh:mm'
+                             ' y que no sea una hora anterior al día presente, ten en cuenta que se maneja'
+                             ' hora militar de las 00:00 hasta las 23:59 horas y que debes de ingresar primero'
+                             ' la fecha')
+        return False
 
 
 def catch_people_table(var):
     global people
+    people = ''
     pattern = r'\d*'
-    if re.fullmatch(pattern, var) is None or len(var) > 2:
+    if re.fullmatch(pattern, var) is None:
         return False
-    people = var
-    return True
+    else:
+        people = var
+        return True
 
 
 def create_table(dynamic_frame):
     global table_date
     global table_hour
-    global table_people
+    global people
     entry_box_width = 25
-    lbl_title = ttk.Label(dynamic_frame, text="Agregar Mesas",
+    lbl_title = ttk.Label(dynamic_frame,
+                          text="Agregar Mesas",
                           font=("default", 12, "bold"))
     lbl_date_table = ttk.Label(dynamic_frame, text="Fecha")
     lbl_hour_table = ttk.Label(dynamic_frame, text="Hora")
     lbl_people_table = ttk.Label(dynamic_frame, text="N. Personas")
-    ######-------- se elimina asignacion de variables globales con stringvalue() ya que no es necesario
+
     entry_date_table = ttk.Entry(dynamic_frame,
                                  width=entry_box_width,
-                                 validate="key",
+                                 validate="focusout",
                                  validatecommand=(dynamic_frame.register(catch_date_table), '%P'))
     entry_hour_table = ttk.Entry(dynamic_frame,
                                  width=entry_box_width,
-                                 validate="key",
+                                 validate="focusout",
                                  validatecommand=(dynamic_frame.register(catch_hour_table), '%P'))
     entry_people_table = ttk.Entry(dynamic_frame,
                                    width=entry_box_width,
