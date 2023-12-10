@@ -24,7 +24,6 @@ def warning(dynamic_frame, tree):
 
 
 def delete_dish_template(dynamic_frame):
-
     lbl_title = ttk.Label(dynamic_frame,
                           text="Eliminar plato",
                           font=("default", 12, "bold"))
@@ -42,15 +41,13 @@ def delete_dish_template(dynamic_frame):
     data_base_for_dishes = tools_dishes.list_dishes()
     for row in data_base_for_dishes:
         tree.insert("", "end", values=row)
-    
     scrollbar_y = ttk.Scrollbar(dynamic_frame, orient="vertical", command=tree.yview)
     tree.configure(yscrollcommand=scrollbar_y.set)
 
-    button_delete = ttk.Button(
-        dynamic_frame,
-        text="Eliminar",
-        style="Accent.TButton",
-        command=lambda: warning(dynamic_frame, tree))
+    button_delete = ttk.Button(dynamic_frame,
+                               text="Eliminar",
+                               style="Accent.TButton",
+                               command=lambda: warning(dynamic_frame, tree))
     button_back = ttk.Button(
         dynamic_frame,
         text="Atrás",

@@ -87,7 +87,6 @@ def create_dish_template(dynamic_frame):
     global dish_availability
     entry_box_width = 25
     lbl_title = ttk.Label(dynamic_frame,
-
                           text="Agregar platos",
                           font=("default", 12, "bold"))
     lbl_dish_name = ttk.Label(dynamic_frame,

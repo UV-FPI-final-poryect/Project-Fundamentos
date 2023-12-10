@@ -1,4 +1,3 @@
-from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import utils.template_handler
@@ -20,6 +19,7 @@ def warning(dynamic_frame, tree):
         else:
             messagebox.showerror('Sin selección', 'Asegurate de haber seleccionado una fila para modificar.')
     except Exception:
+
         messagebox.showerror('No se pudo completar la acción',
                              'No se ha logrado realizar el proceso de actualización, llama al proveedor para asesoria')
 
@@ -33,14 +33,15 @@ def update_dish_template(dynamic_frame):
 
     for col in COLUMNS_NAMES:
         tree.heading(col, text=col)
-        if (col == "Nombre"):
-            tree.column(col, anchor="center", width=(120))
+        if col == "Nombre":
+            tree.column(col, anchor="center", width=120)
             continue
-        if (col == "Descripción"):
-            tree.column(col, anchor="center", width=(250))
+        if col == "Descripción":
+            tree.column(col, anchor="center", width=250)
             continue
-        tree.column(col, anchor="center", width=(55))
+        tree.column(col, anchor="center", width=55)
     data_base_for_dishes = tools_dishes.list_dishes()
+    print(data_base_for_dishes)
     for row in data_base_for_dishes:
         tree.insert("", "end", values=row)
 

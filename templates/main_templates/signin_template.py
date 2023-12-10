@@ -92,6 +92,7 @@ def catch_confirm_pass(var):
 
 def signin_template(dynamic_frame):
     entry_box_width = 35
+
     lbl_title = ttk.Label(dynamic_frame,
                           text="Registro nuevo usuario",
                           font=("default", 12, "bold"))

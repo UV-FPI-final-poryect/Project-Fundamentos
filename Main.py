@@ -46,6 +46,7 @@ if __name__ == '__main__':
     style.configure(frame_style,
                     background=last_plain_bg)
 
+
     frame_container = ttk.Frame(root)
     frame_container.grid_columnconfigure(0, weight=1, minsize=700)
     frame_container.grid_rowconfigure(0, weight=1, minsize=150)
@@ -64,8 +65,8 @@ if __name__ == '__main__':
                         background=last_plain_bg)
     dynamic_content_frame = ttk.Frame(
         frame_container, style=frame_style)
-    dynamic_frame = ttk.Frame(dynamic_content_frame, style="Card")
 
+    dynamic_frame = ttk.Frame(dynamic_content_frame, style="Card")
     frame_container.grid(column=0, row=0, sticky="nwes")
     static_frame.grid(column=0, row=0, sticky="nwes")
     dynamic_content_frame.grid(column=0, row=1, sticky="nwes")

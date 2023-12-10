@@ -4,7 +4,6 @@ import re
 import data_access_tools.user_auth as tools_users
 import utils.template_handler
 
-
 user_email = ''
 user_pass = ''
 
@@ -60,7 +59,6 @@ def login_template(dynamic_frame):
                           text="Inicio Sesión",
                           font=("default", 12, "bold"))
     lbl_subtitle_email = ttk.Label(dynamic_frame,
-
                                    text="Email")
     lbl_subtitle_pass = ttk.Label(dynamic_frame,
                                   text="Contraseña")

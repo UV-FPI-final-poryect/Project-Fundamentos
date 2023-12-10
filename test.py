@@ -22,6 +22,7 @@ def center_window(root):
 
 
 if __name__ == '__main__':
+
     change_path()
     root = Tk()
     root.title("SSJ Restorant")
@@ -59,7 +60,6 @@ if __name__ == '__main__':
 
     dynamic_content_frame = ttk.Frame(frame_container,
                                       style=frame_style)
-
     dynamic_frame = ttk.Frame(dynamic_content_frame, style="Card")
 
     frame_container.grid(column=0, row=0, sticky="nwes")
@@ -73,6 +73,6 @@ if __name__ == '__main__':
     # ! al diccionario templ_dic en el archivo template_handler.py
 
     center_window(root)
-    templ_handler('update_dish', dynamic_frame)
+    templ_handler('dishes_management', dynamic_frame)
 
     root.mainloop()

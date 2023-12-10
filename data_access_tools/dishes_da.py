@@ -8,11 +8,15 @@ def restricted():
 
 
 def add_dish(dish_to_create):
+    print(dish_to_create)
+    print(tools_users.token)
     if tools_users.token:
         dishes.db_id += 1
         new_dish_id = dishes.db_id
         dish_to_create[0] = new_dish_id
+        print(dish_to_create)
         dishes.db_matrix.append(dish_to_create)
+        print(dishes.db_matrix)
     else:
         restricted()
 
@@ -45,5 +49,3 @@ def erase_dish(dish_id):
                 break
     else:
         restricted()
-    
-    

@@ -1,6 +1,7 @@
 from tkinter import ttk
 import textwrap
 
+
 import utils.template_handler
 
 
