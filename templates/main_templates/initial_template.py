@@ -1,7 +1,5 @@
-from tkinter import *
 from tkinter import ttk
 import textwrap
-from PIL import Image, ImageTk
 
 import utils.template_handler
 
