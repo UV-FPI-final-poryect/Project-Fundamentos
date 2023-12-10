@@ -1,9 +1,8 @@
 from tkinter import ttk
 from tkinter import messagebox
 import utils.template_handler
+import databases.db_dishes as db_dishes
 import data_access_tools.dishes_da as tools_dishes
-
-columns_names = ["Código", "Nombre", "Precio", "Descripción", "Disponible"]
 
 
 def warning(dynamic_frame, tree):
@@ -27,9 +26,9 @@ def delete_dish_template(dynamic_frame):
     lbl_title = ttk.Label(dynamic_frame,
                           text="Eliminar plato",
                           font=("default", 12, "bold"))
-    tree = ttk.Treeview(dynamic_frame, columns=columns_names, show="headings", height=9)
+    tree = ttk.Treeview(dynamic_frame, columns=db_dishes.COLUMNS_NAMES, show="headings", height=9)
 
-    for col in columns_names:
+    for col in db_dishes.COLUMNS_NAMES:
         tree.heading(col, text=col)
         if col == "Nombre":
             tree.column(col, anchor="center", width=120)

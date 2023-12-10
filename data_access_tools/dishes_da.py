@@ -8,15 +8,18 @@ def restricted():
 
 
 def add_dish(dish_to_create):
-    print(dish_to_create)
-    print(tools_users.token)
     if tools_users.token:
+        new_dish = []
+        for i in range(len(dishes.COLUMNS_NAMES)):
+            new_dish.append(i)
         dishes.db_id += 1
         new_dish_id = dishes.db_id
-        dish_to_create[0] = new_dish_id
-        print(dish_to_create)
-        dishes.db_matrix.append(dish_to_create)
-        print(dishes.db_matrix)
+        new_dish[0] = new_dish_id
+        new_dish[1] = dish_to_create[1]
+        new_dish[2] = dish_to_create[2]
+        new_dish[3] = dish_to_create[3]
+        new_dish[4] = dish_to_create[4]
+        dishes.db_matrix.append(new_dish)
     else:
         restricted()
 

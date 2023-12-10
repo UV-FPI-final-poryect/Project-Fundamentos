@@ -1,5 +1,7 @@
 db_id = 15
 
+COLUMNS_NAMES = ["Código", "Nombre", "Precio", "Descripción", "Disponible"]
+
 db_matrix = [
     [1, 'Tilapia frita', '45000', 'tilapia 300gr', 'Si'],
     [2, 'Sushi salmón', '65000', 'salmon 5g c/pieza', 'Si'],
@@ -16,4 +18,4 @@ db_matrix = [
     [13, 'Cerveza', '8000', 'Nacional', 'No'],
     [14, 'Limonada', '7000', '350ml', 'Si'],
     [15, 'Jugo en agua', '55000', '350ml', 'Si']
-    ]
+]

@@ -42,7 +42,6 @@ def update_table(dynamic_frame):
             continue
         tree.column(col, anchor="center", width=55)
     data_base_for_tables = tool_table.get_matriz()
-    print(data_base_for_tables)
     for row in data_base_for_tables:
         tree.insert("", "end", values=row)
 
