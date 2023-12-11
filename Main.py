@@ -46,7 +46,6 @@ if __name__ == '__main__':
     style.configure(frame_style,
                     background=last_plain_bg)
 
-
     frame_container = ttk.Frame(root)
     frame_container.grid_columnconfigure(0, weight=1, minsize=700)
     frame_container.grid_rowconfigure(0, weight=1, minsize=150)

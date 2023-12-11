@@ -10,6 +10,7 @@ dish_description = ''
 dish_availability = ''
 OPTIONS = ('Si', 'No')
 
+
 def save_process(dynamic_frame, dish_to_update):
     global dish_name
     global dish_price
@@ -113,7 +114,6 @@ def save_dish_changes_template(dynamic_frame, dish_to_update):
     dish_description = str(dish_to_update[3])
     dish_availability = str(dish_to_update[4])
 
-
     button_add = ttk.Button(
         dynamic_frame,
         text="Guardar",
@@ -138,4 +138,3 @@ def save_dish_changes_template(dynamic_frame, dish_to_update):
     combobox_dish_availability.grid(column=1, row=4, padx=(10, 20), pady=2)
     button_back.grid(column=0, row=5, sticky="e", padx=(0, 10), pady=15)
     button_add.grid(column=1, row=5, sticky="w", padx=(10, 0), pady=15)
-
