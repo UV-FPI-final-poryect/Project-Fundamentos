@@ -23,10 +23,10 @@ def main_menu_template(dynamic_frame):
                                              command=lambda: utils.template_handler.templ_handler('menu_tables',
                                                                                                   dynamic_frame))
     button_order_option = ttk.Button(dynamic_frame,
-                                     text="Gestión pedidos")
-    # command=lambda frame=dynamic_frame :
-    # utils.template_handler.templ_handler('login', frame)) #pendiente funcion
-    # que busque en la base de datos y de acceso
+                                     text="Gestión pedidos",
+                                     command=lambda: utils.template_handler.templ_handler('order_menu',
+                                                                                          dynamic_frame))
+    
     button_logout = ttk.Button(dynamic_frame,
                                text="Cerrar sesión",
                                style="Accent.TButton",

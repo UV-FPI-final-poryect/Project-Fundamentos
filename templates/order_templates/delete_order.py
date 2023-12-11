@@ -3,7 +3,7 @@ from tkinter import messagebox
 import utils.template_handler
 import databases.db_tables as tables
 import databases.db_dishes as dbdish
-from templates.dish_templates.delete_dish_template import columns_names
+#from templates.dish_templates.delete_dish_template import columns_names
 
 def warning(dynamic_frame, tree_dish, tree_table):
     try:
