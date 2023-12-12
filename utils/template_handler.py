@@ -31,10 +31,10 @@ templ_dic = {'main_menu': main_menu_template,
              'add_table': create_table,
              'del_table': delete_table,
              'upd_table': update_table,
-             'order_menu':menu_order_template,
-             'make_order':make_order_template,
-             'del_order':delete_order_template,
-             'upd_order':update_order_template
+             'order_menu': menu_order_template,
+             'make_order': make_order_template,
+             'del_order': delete_order_template,
+             'upd_order': update_order_template
              }
 
 

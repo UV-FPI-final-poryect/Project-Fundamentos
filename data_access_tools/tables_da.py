@@ -9,7 +9,7 @@ def restricted():
 
 def get_matriz():
     if tools_users.token:
-        return tables_matriz.tables
+        return tables_matriz.tables_reserves
     else:
         restricted()
 
@@ -19,13 +19,13 @@ def save_data_table(date, hour, people):
         new_table = []
         for i in range(len(tables_matriz.name_columns)):
             new_table.append(i)
-        tables_matriz.num_tables += 1
-        new_index = tables_matriz.num_tables
+        tables_matriz.id_tables_reserves += 1
+        new_index = tables_matriz.id_tables_reserves
         new_table[0] = new_index
         new_table[1] = str(date)
         new_table[2] = str(hour)
         new_table[3] = people
-        tables_matriz.tables.append(new_table)
+        tables_matriz.tables_reserves.append(new_table)
     else:
         restricted()
 
@@ -35,7 +35,7 @@ def delet_table(index):
         database = get_matriz()
         for i in database:
             if index == i[0]:
-                tables_matriz.tables.remove(i)
+                tables_matriz.tables_reserves.remove(i)
     else:
         restricted()
 
@@ -46,7 +46,7 @@ def updat_table(index):
         num_index = index[0] - 1
         for i in database:
             if i[0] == num_index:
-                tables_matriz.tables[num_index] = index
+                tables_matriz.tables_reserves[num_index] = index
                 break
     else:
         restricted()

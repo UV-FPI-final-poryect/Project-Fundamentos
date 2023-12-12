@@ -14,6 +14,8 @@ def make_order_template(dynamic_frame):
                           font=("default", 12, "bold"))
     lbl_plate_order = ttk.Label(dynamic_frame, text="N. Plato")
     lbl_table_order = ttk.Label(dynamic_frame, text="N. Mesa")
+
+
     
     button_make = ttk.Button(dynamic_frame,
                             text="Realizar",

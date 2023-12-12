@@ -35,7 +35,7 @@ def delete_order_template(dynamic_frame):
     list_table.heading(column=9, text=title_tables)
     list_dish = ttk.Treeview(text=title_dish)
     
-    for i in tables.tables:
+    for i in tables.tables_reserves:
         list_table.insert("", "end", values=(i[0],))
     
     for j in dbdish.db_matrix:
