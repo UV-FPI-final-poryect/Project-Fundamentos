@@ -34,10 +34,12 @@ def warning(dynamic_frame, tree_order):
 
 def delete_order(index):
     if tools_users.token:
-        database = order.orders()  # Llamamos la matriz
+        database = order.orders # Llamamos la matriz
         for i in database:  # Recorremos la matriz
             if index == i[0]:  # Buscamos el valor del indice
                 order.orders.remove(i)  # Eliminamos ese indice
+                print(i)
+                print(order.orders)
     else:
         restricted()
 
@@ -64,7 +66,7 @@ def delete_order_template(dynamic_frame):
         dynamic_frame,
         text="Eliminar",
         style="Accent.TButton",
-        command=lambda :warning(dynamic_frame, tree_order))
+        command=lambda: warning(dynamic_frame, tree_order))
     button_back = ttk.Button(
         dynamic_frame,
         text="Atrás",
