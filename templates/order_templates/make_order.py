@@ -43,8 +43,8 @@ def make_order_template(dynamic_frame):
     for dish_row in dbdish.db_matrix:
         tree_dish.insert('', "end", values=(dish_row[0],))
 
-    for table_row in tables.tables_reserves:
-        tree_table.insert('', "end", values=(table_row[0],))
+    for table_row in range(tables.total_tables):
+        tree_table.insert('', "end", values=[table_row + 1])
 
     scrollbar_dish = ttk.Scrollbar(dynamic_frame, orient="vertical", command=tree_dish.yview)
     scrollbar_table = ttk.Scrollbar(dynamic_frame, orient="vertical", command=tree_table.yview)
