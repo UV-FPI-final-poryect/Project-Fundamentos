@@ -1,10 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter import messagebox
 import utils.template_handler
 import databases.db_tables as tables
 import databases.db_dishes as dbdish
-import databases.db_orders as order
 import templates.order_templates.make_order as save
 
 
