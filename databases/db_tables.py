@@ -1,6 +1,6 @@
 id_tables_reserves = 6
 
-total_tables = 15
+total_tables = 11
 
 name_columns = ["N. Mesa", "Fecha", "Hora", "N. Personas"]
 
