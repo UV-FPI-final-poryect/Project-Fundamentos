@@ -54,7 +54,9 @@ def make_order_template(dynamic_frame):
     button_make = ttk.Button(dynamic_frame,
                              text="Realizar",
                              style="Accent.TButton",
-                             command=lambda: save_order(dynamic_frame))
+                             command=lambda: save_order(dynamic_frame,
+                                                        tree_dish,
+                                                        tree_table))
 
     button_back = ttk.Button(dynamic_frame, text="Atrás",
                              command=lambda: utils.template_handler. \
