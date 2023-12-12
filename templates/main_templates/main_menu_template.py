@@ -15,20 +15,20 @@ def main_menu_template(dynamic_frame):
                           font=("default", 12, "bold"))
 
     button_dish_option = ttk.Button(dynamic_frame,
-                                    text="Gestión platos",
+                                    text="Gestión Platos",
                                     command=lambda: utils.template_handler.templ_handler('dishes_management',
                                                                                          dynamic_frame))
     button_reserve_table_option = ttk.Button(dynamic_frame,
-                                             text="Gestión mesas",
+                                             text="Gestión Mesas",
                                              command=lambda: utils.template_handler.templ_handler('menu_tables',
                                                                                                   dynamic_frame))
     button_order_option = ttk.Button(dynamic_frame,
-                                     text="Gestión pedidos",
+                                     text="Gestión Pedidos",
                                      command=lambda: utils.template_handler.templ_handler('order_menu',
                                                                                           dynamic_frame))
     
     button_logout = ttk.Button(dynamic_frame,
-                               text="Cerrar sesión",
+                               text="Cerrar Sesión",
                                style="Accent.TButton",
                                command=lambda: logout_action(dynamic_frame))
 
