@@ -46,6 +46,15 @@ def save_order(dish, table):
     add_order(new_order)
 
 
+def actualize_order(upd_order):
+    database = order.orders
+    list_index = upd_order[0] - 1
+    for row in database:
+        if row[0] == list_index:
+            order.orders[list_index] = upd_order
+            break
+
+
 def add_order(new_order):
     if tools_users.token:
         order.num_order += 1
@@ -70,7 +79,8 @@ def make_order_template(dynamic_frame):
     tree_table.heading('Mesa', text='N. Mesa')
 
     for dish_row in dbdish.db_matrix:
-        tree_dish.insert('', "end", values=(dish_row[0],))
+        if dish_row[4] == 'Si':
+            tree_dish.insert('', "end", values=(dish_row[0],))
 
     for table_row in range(tables.total_tables):
         tree_table.insert('', "end", values=[table_row + 1])

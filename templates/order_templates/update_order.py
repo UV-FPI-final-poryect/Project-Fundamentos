@@ -2,7 +2,7 @@ from tkinter import ttk
 from tkinter import messagebox
 import utils.template_handler
 import databases.db_orders as order
-#import templates.order_templates.order_upd as change
+import templates.order_templates.order_upd as change
 
 
 def warning(dynamic_frame, tree_order):
@@ -13,10 +13,7 @@ def warning(dynamic_frame, tree_order):
                                             "¿Seguro quieres Actualizar este pedido?")
             if answer:
                 upd_order = tree_order.item(option)["values"]  # Guardamos los valores de la seleccion escogida
-                #change.update_order(dynamic_frame, upd_order[0])
-                # Pensando que funcion implementar, en local tengo combobox
-                utils.template_handler.templ_handler('upd_order',
-                                                     dynamic_frame)
+                change.update_order(dynamic_frame, upd_order)
             else:
                 messagebox.showerror('Cancelado',
                                     "No se pudo realizar el proceso")
