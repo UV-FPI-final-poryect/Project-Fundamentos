@@ -2,6 +2,12 @@ from tkinter import ttk
 from tkinter import messagebox
 import utils.template_handler
 import databases.db_orders as order
+import data_access_tools.user_auth as tools_users
+
+
+def restricted():
+    messagebox.showerror('Faltan permisos',
+                         'No tiene autorización para realizar esta acción, autentiquese primero')
 
 
 def warning(dynamic_frame, tree_order):
@@ -27,10 +33,13 @@ def warning(dynamic_frame, tree_order):
 
 
 def delete_order(index):
-    database = order.orders()  # Llamamos la matriz
-    for i in database:  # Recorremos la matriz
-        if index == i[0]:  # Buscamos el valor del indice
-            order.orders.remove(i)  # Eliminamos ese indice
+    if tools_users.token:
+        database = order.orders()  # Llamamos la matriz
+        for i in database:  # Recorremos la matriz
+            if index == i[0]:  # Buscamos el valor del indice
+                order.orders.remove(i)  # Eliminamos ese indice
+    else:
+        restricted()
 
 
 def delete_order_template(dynamic_frame):

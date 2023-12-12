@@ -1,6 +1,7 @@
 from tkinter import ttk
 from tkinter import messagebox
 import utils.template_handler
+import data_access_tools.user_auth as tools_users
 
 
 def warning(dynamic_frame):

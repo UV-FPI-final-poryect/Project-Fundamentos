@@ -3,9 +3,16 @@ from tkinter import messagebox
 import utils.template_handler
 import databases.db_tables as tables
 import databases.db_dishes as dbdish
+import databases.db_orders as order
+import data_access_tools.user_auth as tools_users
 
 
-def save_order(dynamic_frame, tree_dish, tree_table):
+def restricted():
+    messagebox.showerror('Faltan permisos',
+                         'No tiene autorización para realizar esta acción, autentiquese primero')
+
+
+def check_order(dynamic_frame, tree_dish, tree_table):
     try:
         option_dish = tree_dish.selection()
         option_table = tree_table.selection()
@@ -13,8 +20,10 @@ def save_order(dynamic_frame, tree_dish, tree_table):
             answer = messagebox.askokcancel("Advertencia",
                                             "¿Seguro quieres Agregar este pedido?")
             if answer:
-                # Funcion para guardar
-                utils.template_handler.templ_handler('del_order',
+                dish = tree_dish.item(option_dish)['values']
+                table = tree_table.item(option_table)["values"]
+                save_order(dish[0], table[0])
+                utils.template_handler.templ_handler('order_menu',
                                                      dynamic_frame)
             else:
                 messagebox.showerror('Cancelado',
@@ -25,6 +34,26 @@ def save_order(dynamic_frame, tree_dish, tree_table):
     except Exception:
         messagebox.showerror('Incompleto',
                              "Seleccione un pedido para Eliminar")
+
+
+def save_order(dish, table):
+    new_order = []
+    new_order.append(0)
+    new_order.append('Mesa')
+    new_order.append(table)
+    new_order.append("Plato")
+    new_order.append(dish)
+    add_order(new_order)
+
+
+def add_order(new_order):
+    if tools_users.token:
+        order.num_order += 1
+        order_position = order.num_order
+        new_order[0] = order_position
+        order.orders.append(new_order)
+    else:
+        restricted()
 
 
 def make_order_template(dynamic_frame):
@@ -54,7 +83,7 @@ def make_order_template(dynamic_frame):
     button_make = ttk.Button(dynamic_frame,
                              text="Realizar",
                              style="Accent.TButton",
-                             command=lambda: save_order(dynamic_frame,
+                             command=lambda: check_order(dynamic_frame,
                                                         tree_dish,
                                                         tree_table))
 
