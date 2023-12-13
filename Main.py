@@ -31,7 +31,7 @@ def center_window(root):
 if __name__ == '__main__':
     change_path()
     root = Tk()
-    root.title("SSJ Restorant")
+    root.title("SJ Restorant")
     root.resizable(False, False)
     root.iconbitmap('../multimedia/forkandknife.ico')
 
@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     last_plain_bg = "#858585"
 
-    frame_style = 'My.TFrame'
+    frame_style = 'TFrame'
     style = ttk.Style()
     style.configure(frame_style,
                     background=last_plain_bg)
@@ -59,7 +59,7 @@ if __name__ == '__main__':
                         image=img,
                         background=last_plain_bg)
     lbl_ini = ttk.Label(static_frame,
-                        text="SSJ Restorant",
+                        text="SJ Restorant",
                         font=("default", 14, "bold"),
                         background=last_plain_bg)
     dynamic_content_frame = ttk.Frame(

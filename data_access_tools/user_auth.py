@@ -1,6 +1,6 @@
 import hashlib
 
-token = True
+token = False
 
 
 def search_user(user_to_verify):
