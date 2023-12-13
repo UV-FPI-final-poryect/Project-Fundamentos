@@ -13,6 +13,10 @@ from templates.tables_templates.menu_tables import menu_tables_template
 from templates.tables_templates.create_table_temp import create_table
 from templates.tables_templates.delete_table_temp import delete_table
 from templates.tables_templates.update_table_temp import update_table
+from templates.order_templates.order_menu import menu_order_template
+from templates.order_templates.make_order import make_order_template
+from templates.order_templates.delete_order import delete_order_template
+from templates.order_templates.update_order import update_order_template
 
 normal_access_templ_dic = {'initial': initial_template,
                            'login': login_template,
@@ -26,7 +30,11 @@ templ_dic = {'main_menu': main_menu_template,
              'menu_tables': menu_tables_template,
              'add_table': create_table,
              'del_table': delete_table,
-             'upd_table': update_table
+             'upd_table': update_table,
+             'order_menu': menu_order_template,
+             'make_order': make_order_template,
+             'del_order': delete_order_template,
+             'upd_order': update_order_template
              }
 
 

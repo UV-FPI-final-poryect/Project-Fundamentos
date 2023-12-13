@@ -1,8 +1,10 @@
-num_tables = 6
+id_tables_reserves = 6
+
+total_tables = 11
 
 name_columns = ["N. Mesa", "Fecha", "Hora", "N. Personas"]
 
-tables = [
+tables_reserves = [
     [1, "2023-12-22", "08:00", 2],
     [2, "2023-12-19", "08:30", 2],
     [3, "2023-12-20", "09:00", 2],

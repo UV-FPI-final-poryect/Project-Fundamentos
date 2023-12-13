@@ -40,6 +40,7 @@ def delete_dish_template(dynamic_frame):
     data_base_for_dishes = tools_dishes.list_dishes()
     for row in data_base_for_dishes:
         tree.insert("", "end", values=row)
+
     scrollbar_y = ttk.Scrollbar(dynamic_frame, orient="vertical", command=tree.yview)
     tree.configure(yscrollcommand=scrollbar_y.set)
 

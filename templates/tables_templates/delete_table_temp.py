@@ -47,7 +47,7 @@ def delete_table(dynamic_frame):
     scrollbar_y = ttk.Scrollbar(dynamic_frame, orient="vertical", command=tree.yview)
     tree.configure(yscrollcommand=scrollbar_y.set)
 
-    button_back = ttk.Button(dynamic_frame, text="Atras",
+    button_back = ttk.Button(dynamic_frame, text="Atrás",
                              command=lambda frame=dynamic_frame:
                                  utils.template_handler.templ_handler('menu_tables', frame))
     button_del = ttk.Button(dynamic_frame, text="Eliminar",

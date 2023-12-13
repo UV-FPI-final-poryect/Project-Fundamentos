@@ -73,6 +73,6 @@ if __name__ == '__main__':
     # ! al diccionario templ_dic en el archivo template_handler.py
 
     center_window(root)
-    templ_handler('dishes_management', dynamic_frame)
+    templ_handler('order_menu', dynamic_frame)
 
     root.mainloop()
