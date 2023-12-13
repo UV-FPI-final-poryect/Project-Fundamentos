@@ -6,6 +6,11 @@ import data_access_tools.user_auth as tools_users
 def restricted():
     messagebox.showerror('Faltan permisos', 'No tiene autorización para realizar esta acción, autentiquese primero')
 
+def dishes_columns():
+    if tools_users.token:
+        return dishes.COLUMNS_NAMES
+    else:
+        restricted()
 
 def add_dish(dish_to_create):
     if tools_users.token:
@@ -34,10 +39,10 @@ def list_dishes():
 def actualize_dish(dish_to_update):
     if tools_users.token:
         database = list_dishes()
-        list_index = dish_to_update[0]-1
-        for row in database:
-            if row[0] == list_index:
-                dishes.db_matrix[list_index] = dish_to_update
+        list_index = dish_to_update[0]
+        for row in range(len(database)):
+            if database[row][0] == list_index:
+                dishes.db_matrix[row] = dish_to_update
                 break
     else:
         restricted()

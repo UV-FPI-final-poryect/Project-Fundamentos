@@ -1,7 +1,6 @@
 from tkinter import ttk
 from tkinter import messagebox
 import utils.template_handler
-import databases.db_tables as tables
 import data_access_tools.tables_da as tool_table
 
 
@@ -28,10 +27,10 @@ def delete_table(dynamic_frame):
     lbl_title = ttk.Label(dynamic_frame, text="Mesas",
                           font=("default", 12, "bold"))
 
-    tree = ttk.Treeview(dynamic_frame, columns=tables.name_columns,
+    tree = ttk.Treeview(dynamic_frame, columns=tool_table.tables_columns(),
                         show="headings", height=9)
 
-    for col in tables.name_columns:
+    for col in tool_table.tables_columns():
         tree.heading(col, text=col)
         if col == "Fecha":
             tree.column(col, anchor="center", width=100)

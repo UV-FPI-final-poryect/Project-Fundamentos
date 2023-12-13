@@ -7,6 +7,20 @@ def restricted():
     messagebox.showerror('Faltan permisos', 'No tiene autorización para realizar esta acción, autentiquese primero')
 
 
+def tables_columns():
+    if tools_users.token:
+        return tables_matriz.name_columns
+    else:
+        restricted()
+
+
+def get_total_tables():
+    if tools_users.token:
+        return tables_matriz.total_tables
+    else:
+        restricted()
+
+
 def get_matriz():
     if tools_users.token:
         return tables_matriz.tables_reserves
@@ -40,13 +54,13 @@ def delet_table(index):
         restricted()
 
 
-def updat_table(index):
+def updat_table(upd_table):
     if tools_users.token:
         database = get_matriz()
-        num_index = index[0] - 1
-        for i in database:
-            if i[0] == num_index:
-                tables_matriz.tables_reserves[num_index] = index
+        num_index = upd_table[0]
+        for row in range(len(database)):
+            if database[row][0] == num_index:
+                tables_matriz.tables_reserves[row] = upd_table
                 break
     else:
         restricted()

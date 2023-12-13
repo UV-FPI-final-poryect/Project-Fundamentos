@@ -1,15 +1,9 @@
 from tkinter import ttk
 from tkinter import messagebox
 import utils.template_handler
+import data_access_tools.orders_da as orders_da
 import databases.db_tables as tables
 import databases.db_dishes as dbdish
-import databases.db_orders as order
-import data_access_tools.user_auth as tools_users
-
-
-def restricted():
-    messagebox.showerror('Faltan permisos',
-                         'No tiene autorización para realizar esta acción, autentiquese primero')
 
 
 def check_order(dynamic_frame, tree_dish, tree_table):
@@ -30,10 +24,10 @@ def check_order(dynamic_frame, tree_dish, tree_table):
                                      "No se pudo realizar el proceso")
         else:
             messagebox.showerror('Incompleto',
-                                 "Seleccione un pedido para Eliminar")
+                                 "Asegurate de haber seleccionado tanto mesa como plato")
     except Exception:
-        messagebox.showerror('Incompleto',
-                             "Seleccione un pedido para Eliminar")
+        messagebox.showerror('No se pudo completar la acción', 'No se ha logrado realizar el proceso '
+                                                               'de agregación llama al proveedor para asesoria')
 
 
 def save_order(dish, table):
@@ -43,26 +37,7 @@ def save_order(dish, table):
     new_order.append(table)
     new_order.append("Plato")
     new_order.append(dish)
-    add_order(new_order)
-
-
-def actualize_order(upd_order):
-    database = order.orders
-    list_index = upd_order[0] - 1
-    for row in database:
-        if row[0] == list_index:
-            order.orders[list_index] = upd_order
-            break
-
-
-def add_order(new_order):
-    if tools_users.token:
-        order.num_order += 1
-        order_position = order.num_order
-        new_order[0] = order_position
-        order.orders.append(new_order)
-    else:
-        restricted()
+    orders_da.add_order(new_order)
 
 
 def make_order_template(dynamic_frame):
@@ -94,11 +69,11 @@ def make_order_template(dynamic_frame):
                              text="Realizar",
                              style="Accent.TButton",
                              command=lambda: check_order(dynamic_frame,
-                                                        tree_dish,
-                                                        tree_table))
+                                                         tree_dish,
+                                                         tree_table))
 
     button_back = ttk.Button(dynamic_frame, text="Atrás",
-                             command=lambda: utils.template_handler. \
+                             command=lambda: utils.template_handler.
                              templ_handler('order_menu', dynamic_frame))
 
     lbl_title.grid(column=0, row=0, columnspan=4, padx=40, pady=10)
