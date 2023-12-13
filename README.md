@@ -6,7 +6,9 @@
 <img src="https://img.shields.io/badge/status-stable-green">
 </p>
 
-![plantilla inicial](multimedia/readme_pics/logo.PNG)
+<p align="center">
+  <img src="multimedia/readme_pics/logo.PNG" alt="Plantilla Inicial">
+</p>
 
 # SJ Restaurant
 
@@ -24,16 +26,22 @@ y la versión 10.1.0 de la librería Pillow.
 Para usar la aplicación debes de tener un usuario, para ello dirigete a la opción "Registrarse" de 
 la pantalla principal, si ya cuentas con uno, solo basta con iniciar sesión.
 
-![plantilla inicial](multimedia/readme_pics/initial.PNG)
+<p align="center">
+  <img src="multimedia/readme_pics/initial.PNG" alt="Plantilla inicial">
+</p>
 
 Una vez iniciada la sesión tendrás a disposición los menús para las gestiones anteriormente descritas
 
-![plantilla inicial](multimedia/readme_pics/mainmenu.PNG)
+<p align="center">
+  <img src="multimedia/readme_pics/mainmenu.PNG" alt="Menu ppal">
+</p>
 
 Aquí como ejemplo se muestra el menú para la gestión de platos, y la estructura es la misma para los otros sistemas
 de gestión.
 
-![plantilla inicial](multimedia/readme_pics/managemente_menu.PNG)
+<p align="center">
+  <img src="multimedia/readme_pics/managemente_menu.PNG" alt="Menu platos">
+</p>
 
 Si tienes alguna duda o recomendación no dudes en contactarnos, gracias!
 
@@ -42,15 +50,9 @@ Si tienes alguna duda o recomendación no dudes en contactarnos, gracias!
 Este proyecto es de licencia libre.
 
 <h3>Authors</h3>
-<div style="display: flex; justify-content: flex-start; align-items: center;">
-    <div style=" margin-right: 20px">
-        <img src="https://avatars.githubusercontent.com/u/53058604?v=4" width=115 alt="Juan's avatar profile">
-        <br>
-        <sub><a href ="https://github.com/JD-Cifuentes">Juan David Cifuentes</a></sub>
-    </div>
-    <div>
-        <img src="https://avatars.githubusercontent.com/u/145034027?v=4" width=115 alt="Santiago's avatar profile">
-        <br>
-        <sub><a href ="https://github.com/SantiagoLopezUV">Santiago Lopez</a></sub>
-    </div>
+<div align="center" style="display: flex">
+    <a href ="https://github.com/JD-Cifuentes" ><img src="https://avatars.githubusercontent.com/u/53058604?v=4" width=115 alt="Juan's avatar profile"><p>Juan David Cifuentes</p></a>
+    <a href ="https://github.com/SantiagoLopezUV"><img src="https://avatars.githubusercontent.com/u/145034027?v=4" width=115 alt="Santiago's avatar profile"><p>Santiago Lopez</p></a>
 </div>
+
+
