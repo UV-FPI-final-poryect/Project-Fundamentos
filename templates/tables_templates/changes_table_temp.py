@@ -11,6 +11,11 @@ people = ''
 
 
 def save_change(frame, upd_table):
+    """
+
+    :param frame:
+    :param upd_table:
+    """
     global table_date
     global table_hour
     global people
