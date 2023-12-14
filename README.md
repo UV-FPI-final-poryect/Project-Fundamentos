@@ -49,7 +49,7 @@ Si tienes alguna duda o recomendación no dudes en contactarnos, gracias!
 
 Este proyecto es de licencia libre.
 
-<h3>Authors</h3>
+<h3>Autores</h3>
 <div align="center" style="display: flex">
     <a href ="https://github.com/JD-Cifuentes" ><img src="https://avatars.githubusercontent.com/u/53058604?v=4" width=115 alt="Juan's avatar profile"><p>Juan David Cifuentes</p></a>
     <a href ="https://github.com/SantiagoLopezUV"><img src="https://avatars.githubusercontent.com/u/145034027?v=4" width=115 alt="Santiago's avatar profile"><p>Santiago Lopez</p></a>
