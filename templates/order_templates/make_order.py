@@ -6,7 +6,26 @@ import databases.db_tables as tables
 import databases.db_dishes as dbdish
 
 
+"""
+This module configures the order creation template by modifying the 
+'dynamic_frame'.
+It imports libraries such as 'tkinter'-'ttk', the 'orders_da'
+module for calling methods that assist in dish creation and updates,
+and the 'template_handler' module for configuring the frame.
+"""
+
+
 def check_order(dynamic_frame, tree_dish, tree_table):
+    """
+    This method prompts the user to confirm their selected option and
+    utilizes exceptions to prevent program interruption.
+
+    Args:
+        dynamic_frame (frame - widget): The dynamic frame being configured 
+        for user interaction.
+        tree_dish (treeview - widget): The table with the dish items.
+        tree_table (treeview - widget): the table with the table items.
+    """
     try:
         option_dish = tree_dish.selection()
         option_table = tree_table.selection()
@@ -31,6 +50,8 @@ def check_order(dynamic_frame, tree_dish, tree_table):
 
 
 def save_order(dish, table):
+    #Once the check order is ok, creates a list with the desired elements
+    #that are going to append in the database
     new_order = []
     new_order.append(0)
     new_order.append('Mesa')
@@ -41,6 +62,7 @@ def save_order(dish, table):
 
 
 def make_order_template(dynamic_frame):
+    #Generates the structure for the order creation template
     lbl_title = ttk.Label(dynamic_frame,
                           text="Realizar Pedido",
                           font=("default", 12, "bold"))
