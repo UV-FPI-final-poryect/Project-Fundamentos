@@ -2,6 +2,7 @@ from tkinter import ttk
 from tkinter import messagebox
 import utils.template_handler
 import data_access_tools.dishes_da as tools_dishes
+from templates.dish_templates.save_dish_changes_template import save_dish_changes_template
 
 
 def warning(dynamic_frame, tree):
@@ -9,22 +10,23 @@ def warning(dynamic_frame, tree):
         selected = tree.selection()
         if selected:
             result = messagebox.askokcancel("Confirmación",
-                                            "¿Deseas elminar este plato?")
+                                            "¿Es este el plato que deseas modificar?")
             if result:
-                dish_to_del = tree.item(selected)['values']
-                tools_dishes.erase_dish(dish_to_del[0])
-                utils.template_handler.templ_handler('delete_dish', dynamic_frame)
+                dish_to_update = tree.item(selected)['values']
+                save_dish_changes_template(dynamic_frame, dish_to_update)
         else:
-            messagebox.showerror('Sin selección', 'Asegurate de haber seleccionado una fila para eliminar.')
+            messagebox.showerror('Sin selección', 'Asegurate de haber seleccionado una fila para modificar.')
     except Exception:
+
         messagebox.showerror('No se pudo completar la acción',
-                             'No se ha logrado realizar el proceso de eliminación, llama al proveedor para asesoria')
+                             'No se ha logrado realizar el proceso de actualización, llama al proveedor para asesoria')
 
 
-def delete_dish_template(dynamic_frame):
+def update_dish_template(dynamic_frame):
     lbl_title = ttk.Label(dynamic_frame,
-                          text="Eliminar plato",
+                          text="Actualizar plato",
                           font=("default", 12, "bold"))
+
     tree = ttk.Treeview(dynamic_frame, columns=tools_dishes.dishes_columns(), show="headings", height=9)
 
     for col in tools_dishes.dishes_columns():
@@ -43,17 +45,18 @@ def delete_dish_template(dynamic_frame):
     scrollbar_y = ttk.Scrollbar(dynamic_frame, orient="vertical", command=tree.yview)
     tree.configure(yscrollcommand=scrollbar_y.set)
 
-    button_delete = ttk.Button(dynamic_frame,
-                               text="Eliminar",
-                               style="Accent.TButton",
-                               command=lambda: warning(dynamic_frame, tree))
+    button_update = ttk.Button(
+        dynamic_frame,
+        text="Actualizar",
+        style="Accent.TButton",
+        command=lambda: warning(dynamic_frame, tree))
     button_back = ttk.Button(
         dynamic_frame,
         text="Atrás",
-        command=lambda: utils.template_handler.templ_handler('dishes_management', dynamic_frame))
+        command=lambda frame=dynamic_frame: utils.template_handler.templ_handler('dishes_management', frame))
 
     lbl_title.grid(column=0, row=0, columnspan=2, pady=10)
     tree.grid(column=0, row=1, columnspan=2, padx=(15, 0), pady=10)
     scrollbar_y.grid(row=1, column=2, padx=(0, 15), pady=10, sticky="ns")
     button_back.grid(column=0, row=2, sticky="e", padx=(0, 10), pady=15)
-    button_delete.grid(column=1, row=2, sticky="w", padx=(10, 0), pady=15)
+    button_update.grid(column=1, row=2, sticky="w", padx=(10, 0), pady=15)
