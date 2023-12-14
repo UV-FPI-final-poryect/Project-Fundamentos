@@ -3,7 +3,15 @@ import hashlib
 token = False
 
 
+"""
+This module imports the 'hashlib' library and implements methods
+for searching, registering, and confirming users.
+It utilizes the library to encrypt passwords and store them in a text file.
+"""
+
+
 def search_user(user_to_verify):
+    # Reads the user from the text file to verify if it exists.
     file_regis = open(r"../databases/registro_inicio.txt", "r")
     users_list = file_regis.read().splitlines()
     for user_row in users_list:
@@ -14,6 +22,7 @@ def search_user(user_to_verify):
 
 
 def signin_user(user_to_create):
+    # Checks if the user exists to create it if not registered.
     if search_user(user_to_create) is None:
         encode_pass = hashlib.sha256(user_to_create[1].encode("utf-8"))
         user_row = user_to_create[0] + ',' + user_to_create[1] + "\n"

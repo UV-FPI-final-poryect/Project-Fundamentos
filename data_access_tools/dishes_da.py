@@ -3,8 +3,19 @@ import databases.db_dishes as dishes
 import data_access_tools.user_auth as tools_users
 
 
+"""
+This module supports data management operations such as saving, updating,
+and deleting entries in the dish management database.
+
+It imports libraries like tkinter and its methods, alongside custom
+modules such as the general dish database module and the user 
+verification check module.
+"""
+
+
 def restricted():
     messagebox.showerror('Faltan permisos', 'No tiene autorización para realizar esta acción, autentiquese primero')
+
 
 def dishes_columns():
     if tools_users.token:
@@ -12,7 +23,16 @@ def dishes_columns():
     else:
         restricted()
 
+
 def add_dish(dish_to_create):
+    """
+    This method positions the received elements based on the
+    database before appending them.
+
+    Args:
+        dish_to_create (list): The elements to be added to the
+        general database.
+    """
     if tools_users.token:
         new_dish = []
         for i in range(len(dishes.COLUMNS_NAMES)):
@@ -37,6 +57,14 @@ def list_dishes():
 
 
 def actualize_dish(dish_to_update):
+    """
+    This method arranges the received elements from the database to 
+    update them in the array.
+
+    Args:
+        dish_to_create (list): Elements intended for updating the 
+        general database.
+    """
     if tools_users.token:
         database = list_dishes()
         list_index = dish_to_update[0]
@@ -49,6 +77,14 @@ def actualize_dish(dish_to_update):
 
 
 def erase_dish(dish_id):
+    """
+    This method arranges the received elements from the database to 
+    erase them in the array.
+
+    Args:
+    dish_id (posicion): Elements intended for delete the 
+    general database.
+    """
     if tools_users.token:
         database = list_dishes()
         for row in database:

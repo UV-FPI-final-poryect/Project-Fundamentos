@@ -24,6 +24,14 @@ OPTIONS = ('Si', 'No')
 
 
 def warning(dynamic_frame):
+    """
+    This method prompts the user to confirm their selected option and
+    utilizes exceptions to prevent program interruption.
+
+    Args:
+        dynamic_frame (frame): The dynamic frame being configured for
+        user interaction.
+    """
     try:
         result = messagebox.askokcancel("Confirmación",
                                         "¿Deseas agregar este plato?")
@@ -72,14 +80,15 @@ def save_process():
 
 
 def catch_dish_name(var):
-    """_summary_
+    """
+    This function is called to validate the input in text boxes.
 
     Args:
-        var (_type_): _description_
+        var (string): The input string to be validated.
 
     Returns:
-        _type_: _description_
-    """
+        bool: Returns a boolean value indicating the validity of the input.
+"""
     if len(var) > 25:
         return False
     global dish_name
@@ -88,6 +97,16 @@ def catch_dish_name(var):
 
 
 def catch_dish_price(var):
+    """
+    This function utilizes 'fullmatch' from the 're' library to match\
+        input elements with expected patterns.
+
+    Args:
+        var (string): The input string to be validated.
+
+    Returns:
+        bool: Returns a boolean value indicating the validity of the input.
+    """
     pattern = r'\d*'
     if re.fullmatch(pattern, var) is None or len(var) > 6:
         return False
@@ -111,10 +130,13 @@ def catch_dish_availability(event):
 
 
 def create_dish_template(dynamic_frame):
-    """_summary_
+    """
+    This method receives the frame and configures it to display the 
+    'Agregar Platos' (Add Dishes) GUI.
 
     Args:
-        dynamic_frame (_type_): _description_
+        dynamic_frame (widget): The frame widget to be configured for 
+        displaying the 'Agregar Platos' interface.
     """
     global dish_name
     global dish_price
@@ -151,8 +173,9 @@ def create_dish_template(dynamic_frame):
     entry_dish_description = ttk.Entry(dynamic_frame,
                                        width=entry_box_width,
                                        validate="key",
-                                       validatecommand=(dynamic_frame.register\
-                                           (catch_dish_description), '%P'))
+                                       validatecommand=(dynamic_frame.\
+                                           register(catch_dish_description),
+                                           '%P'))
 
     combobox_dish_availability = ttk.Combobox(dynamic_frame,
                                               width=(entry_box_width - 3),

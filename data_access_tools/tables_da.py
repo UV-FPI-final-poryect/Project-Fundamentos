@@ -3,8 +3,20 @@ import databases.db_tables as tables_matriz
 import data_access_tools.user_auth as tools_users
 
 
+"""
+This module supports data management operations such as saving,
+updating, and deleting entries in the tables management database.
+
+It imports libraries like tkinter and its methods, alongside custom
+modules such as the general table database module and the user 
+verification check module.
+"""
+
+
 def restricted():
-    messagebox.showerror('Faltan permisos', 'No tiene autorización para realizar esta acción, autentiquese primero')
+    messagebox.showerror('Faltan permisos',
+                         'No tiene autorización para realizar esta '
+                         'acción, autentiquese primero')
 
 
 def tables_columns():
