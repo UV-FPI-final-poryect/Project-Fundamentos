@@ -18,6 +18,26 @@ from templates.order_templates.make_order import make_order_template
 from templates.order_templates.delete_order import delete_order_template
 from templates.order_templates.update_order import update_order_template
 
+
+"""
+This module retrieves the required template by utilizing two
+dictionaries within all imported template modules.
+The first dictionary comprises modules for freely accessible templates,
+such as user verification, registration, and validation.
+The second dictionary holds modules for templates that can be accessed
+through functions if the user has the required permissions.
+
+The module's purpose is to locate and retrieve the specified template
+from these dictionaries as per the user's access level.
+
+Usage:
+- Utilize this module to find and access the necessary template based
+on user permissions and requirements.
+- The dictionaries categorize templates into freely accessible and
+function-accessible categories for ease of retrieval.
+"""
+
+
 normal_access_templ_dic = {'initial': initial_template,
                            'login': login_template,
                            'signin': signin_template}
@@ -39,6 +59,10 @@ templ_dic = {'main_menu': main_menu_template,
 
 
 def grid_rows_columns_config(dynamic_frame, ratio):
+    """
+    This method configures the rows and columns within a frame to
+    modify their proportion.
+    """
     columns, rows = dynamic_frame.grid_size()
     for i in range(rows):
         dynamic_frame.grid_rowconfigure(i, weight=ratio)
@@ -47,21 +71,32 @@ def grid_rows_columns_config(dynamic_frame, ratio):
 
 
 def destroy_widgets(dynamic_frame):
+    """This method removes all widgets from the frame."""
     for widget in dynamic_frame.winfo_children():
         widget.destroy()
 
 
 def templ_handler(choice, dynamic_frame):
+    """
+    Selects the template from the dictionary.
+
+    Args:
+        choice (str): The key of the dictionary to be accessed.
+        dynamic_frame (widget): The frame object to receive the 
+        selected template.
+    """
     destroy_widgets(dynamic_frame)
     grid_rows_columns_config(dynamic_frame, 0)
-
+    # Check if the key is in the dictionary.
     if choice in templ_dic:
+        # Check if the user has permissions
         if tools_users.token:
             temp_chosen = templ_dic[choice]
             temp_chosen(dynamic_frame)
         else:
-            messagebox.showerror('Faltan permisos', 'No tiene autorización para realizar esta acción,'
-                                                    ' autentiquese primero.')
+            messagebox.showerror('Faltan permisos',
+                                 'No tiene autorización para realizar esta'
+                                 'acción, autentiquese primero.')
             temp_chosen = normal_access_templ_dic['initial']
             temp_chosen(dynamic_frame)
     else:
