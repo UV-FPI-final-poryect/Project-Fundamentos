@@ -24,6 +24,12 @@ Purpose:
 - Utilizes 'ttk' for creating graphical elements in the GUI.
 - Implements 'templ_handler' for handling the templates in the application.
 - Verify that the credentials are right before manage it in the backend.
+
+ Args:
+        user_email (String): The verified user email which will be send to
+        user_auth.
+        user_pass (String): The user password which will be send to
+        user_auth.
 """
 
 
@@ -32,6 +38,12 @@ user_pass = ''
 
 
 def verify_process(dynamic_frame):
+    """
+    Here is where the user executes the verify process for the email and 
+    the password entered, first confirms if these variables have some 
+    content, and if they have add them to a list which is passed to the
+    login_user method of the user_auth module to validate the data given.
+    """
     global user_email
     global user_pass
     try:
@@ -57,6 +69,13 @@ def verify_process(dynamic_frame):
 
 
 def catch_user_email(var):
+    """
+    Here validates the email entered in the entry_email widget using the 're' library and if everything is ok,
+    the entered email is assigned to the user_email global variable.
+
+    Parameters:
+        var (String): is the parameter given by the validatecommand to be evaluated.
+    """
     global user_email
     pattern = r'[A-Za-z0-9._%+-]+@{1}(gmail|hotmail|yahoo|outlook|correounivalle.edu){1}+\.(com|co){1}'
     if re.fullmatch(pattern, var) is None or len(var) > 50:
@@ -65,18 +84,24 @@ def catch_user_email(var):
                                                 'outlook, correounivalle.edu) y termine con .com o .co')
         user_email = ''
         return False
-
     user_email = var
     return True
 
 
 def catch_user_pass(var):
+    """
+    Just catch the password entered.
+
+    Parameters:
+        var (String): is the parameter given by the validatecommand to be evaluated.
+    """
     global user_pass
     user_pass = var
     return True
 
 
 def login_template(dynamic_frame):
+    #Generates the structure for the log in template
     entry_box_width = 35
     lbl_title = ttk.Label(dynamic_frame,
                           text="Inicio Sesión",
