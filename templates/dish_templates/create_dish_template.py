@@ -5,6 +5,17 @@ import re
 import utils.template_handler
 import data_access_tools.dishes_da as tools_dishes
 
+
+"""
+This module configures the dish creation template by modifying the 
+'dynamic_frame'.
+It imports libraries such as 'tkinter', 'ttk', 're'(Regular Expression)
+for checking specific conditions within text input, the 'dishes_da'
+module for calling methods that assist in dish creation and updates,
+and the 'template_handler' module for configuring the frame.
+"""
+
+
 dish_name = ''
 dish_price = ''
 dish_description = ''
@@ -14,18 +25,29 @@ OPTIONS = ('Si', 'No')
 
 def warning(dynamic_frame):
     try:
-        result = messagebox.askokcancel("Confirmación", "¿Deseas agregar este plato?")
+        result = messagebox.askokcancel("Confirmación",
+                                        "¿Deseas agregar este plato?")
         if result:
             save_process()
-            utils.template_handler.templ_handler('dishes_management', dynamic_frame)
+            utils.template_handler.templ_handler('dishes_management',
+                                                 dynamic_frame)
     except ValueError:
-        messagebox.showerror('Faltan campos', 'Hay algún campo vacío, por favor verifica.')
+        messagebox.showerror('Faltan campos', 'Hay algún campo vacío,'
+                             'por favor verifica.')
     except Exception:
-        messagebox.showerror('No se pudo completar la acción', 'No se ha logrado realizar el proceso '
-                                                               'de agregación llama al proveedor para asesoria')
+        messagebox.showerror('No se pudo completar la acción',
+                             'No se ha logrado realizar el proceso de '
+                             'agregación llama al proveedor para asesoria')
 
 
 def save_process():
+    """
+    This function verifies, processes, and saves the new data.
+
+    Raises:
+        ValueError: Raised to preemptively handle potential errors
+        during execution.
+    """
     global dish_name
     global dish_price
     global dish_description
@@ -50,6 +72,14 @@ def save_process():
 
 
 def catch_dish_name(var):
+    """_summary_
+
+    Args:
+        var (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     if len(var) > 25:
         return False
     global dish_name
@@ -81,6 +111,11 @@ def catch_dish_availability(event):
 
 
 def create_dish_template(dynamic_frame):
+    """_summary_
+
+    Args:
+        dynamic_frame (_type_): _description_
+    """
     global dish_name
     global dish_price
     global dish_description
@@ -106,20 +141,24 @@ def create_dish_template(dynamic_frame):
     entry_dish_name = ttk.Entry(dynamic_frame,
                                 width=entry_box_width,
                                 validate="key",
-                                validatecommand=(dynamic_frame.register(catch_dish_name), '%P'))
+                                validatecommand=(dynamic_frame.register\
+                                    (catch_dish_name), '%P'))
     entry_dish_price = ttk.Entry(dynamic_frame,
                                  width=entry_box_width,
                                  validate="key",
-                                 validatecommand=(dynamic_frame.register(catch_dish_price), '%P'))
+                                 validatecommand=(dynamic_frame.register\
+                                     (catch_dish_price), '%P'))
     entry_dish_description = ttk.Entry(dynamic_frame,
                                        width=entry_box_width,
                                        validate="key",
-                                       validatecommand=(dynamic_frame.register(catch_dish_description), '%P'))
+                                       validatecommand=(dynamic_frame.register\
+                                           (catch_dish_description), '%P'))
 
     combobox_dish_availability = ttk.Combobox(dynamic_frame,
                                               width=(entry_box_width - 3),
                                               values=OPTIONS)
-    combobox_dish_availability.bind("<<ComboboxSelected>>", catch_dish_availability)
+    combobox_dish_availability.bind("<<ComboboxSelected>>",
+                                    catch_dish_availability)
 
     button_add = ttk.Button(dynamic_frame,
                             text="Agregar",
@@ -128,7 +167,9 @@ def create_dish_template(dynamic_frame):
 
     button_back = ttk.Button(dynamic_frame,
                              text="Atrás",
-                             command=lambda: utils.template_handler.templ_handler('dishes_management', dynamic_frame))
+                             command=lambda: utils.template_handler.\
+                                 templ_handler('dishes_management',
+                                               dynamic_frame))
 
     lbl_title.grid(column=0, row=0, columnspan=2, padx=40, pady=10)
     lbl_dish_name.grid(column=0, row=1, sticky="w", padx=(20, 0), pady=2)
