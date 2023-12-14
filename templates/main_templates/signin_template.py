@@ -45,7 +45,7 @@ def save_process():
 
 def catch_user_email(var):
     global user_email
-    pattern = r'[A-Za-z0-9._%+-]+@{1}(gmail|hotmail|yahoo|outlook|correounivalle.edu){1}+\.(com|co){1}'
+    pattern = r'[A-Za-z0-9._%+-]+@{1}(gmail|hotmail|yahoo|outlook|correounivalle.edu){1}\.(com|co){1}'
     if re.fullmatch(pattern, var) is None or len(var) > 50:
         messagebox.showinfo('Correo no valido', 'Verifica que el correo ingresado este sin espacios '
                                                 'contenga @, sea parte de un dominio válido (gmail, hotmail, yahoo, '
