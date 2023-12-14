@@ -34,13 +34,16 @@ def save_change(frame, upd_table):
             utils.template_handler.templ_handler('upd_table', frame)
     except ValueError:
         messagebox.showerror('Falta alguno de los campos',
-                             'Revisa que todos los campos esten correctos y se hayan guardado bien, e intenta '
+                             'Revisa que todos los campos esten '
+                             'correctos y se hayan guardado bien, e intenta '
                              'nuevamente')
 
     except Exception as e:
         print(e)
         messagebox.showerror('No se puedo completar la acción',
-                             'No se ha logrado realizar el proceso de actualización, llama al proveedor para asesoria')
+                             'No se ha logrado realizar el proceso '
+                             'de actualización, llama al proveedor para '
+                             'asesoria')
 
 
 def catch_date_table(var):
@@ -55,8 +58,10 @@ def catch_date_table(var):
             return True
     except ValueError:
         messagebox.showerror('Fecha no válida',
-                             'El formato de fecha no es aceptado, recuerda que debe ser aaaa-mm-dd'
-                             ' y que no sea una fecha anterior al día presente')
+                             'El formato de fecha no es aceptado, '
+                             'recuerda que debe ser aaaa-mm-dd'
+                             ' y que no sea una fecha anterior al día '
+                             'presente')
         return False
 
 
@@ -65,7 +70,8 @@ def catch_hour_table(var):
     global table_hour
     try:
         datetime_format = str(table_date) + ' ' + var
-        pending_hour = dt.datetime.strptime(datetime_format, "%Y-%m-%d %H:%M")
+        pending_hour = dt.datetime.strptime(datetime_format,
+                                            "%Y-%m-%d %H:%M")
         if len(var) != 5 or pending_hour < dt.datetime.now():
             table_hour = ""
             raise ValueError
@@ -74,9 +80,12 @@ def catch_hour_table(var):
             return True
     except ValueError:
         messagebox.showerror('Hora no válida',
-                             'El formato de hora no es aceptado, recuerda que debe ser hh:mm'
-                             ' y que no sea una hora anterior al día presente, ten en cuenta que se maneja'
-                             ' hora militar de las 00:00 hasta las 23:59 horas y que debes de ingresar primero'
+                             'El formato de hora no es aceptado, '
+                             'recuerda que debe ser hh:mm'
+                             'y que no sea una hora anterior al día '
+                             'presente, ten en cuenta que se maneja'
+                             ' hora militar de las 00:00 hasta las 23:59 '
+                             'horas y que debes de ingresar primero'
                              ' la fecha')
         return False
 

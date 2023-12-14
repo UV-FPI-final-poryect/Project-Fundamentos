@@ -9,7 +9,8 @@ def warning(dynamic_frame, tree_order):
         option = tree_order.selection()
         if option:
             answer = messagebox.askokcancel("Advertencia",
-                                            "¿Seguro quieres ELIMINAR este pedido de forma permanente?")
+                                            "¿Seguro quieres ELIMINAR este"
+                                            " pedido de forma permanente?")
             if answer:
                 del_order = tree_order.item(option)["values"]  # Guardamos los valores de la seleccion escogida
                 orders_da.delete_order(del_order[0])

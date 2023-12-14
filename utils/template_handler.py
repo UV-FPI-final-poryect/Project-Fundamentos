@@ -60,7 +60,9 @@ def templ_handler(choice, dynamic_frame):
             temp_chosen = templ_dic[choice]
             temp_chosen(dynamic_frame)
         else:
-            messagebox.showerror('Faltan permisos', 'No tiene autorización para realizar esta acción,'
+            messagebox.showerror('Faltan permisos', 'No tiene '
+                                                    'autorización para realizar'
+                                                    ' esta acción,'
                                                     ' autentiquese primero.')
             temp_chosen = normal_access_templ_dic['initial']
             temp_chosen(dynamic_frame)

@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
-from utils.change_path_for_poject import change_path
+from utils.change_path_for_project import change_path
 from utils.template_handler import templ_handler
 
 
