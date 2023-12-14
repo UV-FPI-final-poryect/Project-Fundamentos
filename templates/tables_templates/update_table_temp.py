@@ -5,6 +5,16 @@ import data_access_tools.tables_da as tool_table
 import templates.tables_templates.changes_table_temp as change
 
 
+
+"""
+This module imports libraries such as tkinter, ttk, and messagebox 
+for notifications, as well as widgets and functionalities for table
+organization within the dynamic_frame. 
+Additionally, it imports modules like 'tables_da' for table saving 
+and updating.
+"""
+
+
 def warning(dynamic_frame, tree):
     try:
         option = tree.selection()
@@ -24,6 +34,10 @@ def warning(dynamic_frame, tree):
 
 
 def update_table(dynamic_frame):
+    """
+    This is the main template where we configure all widgets 
+    within the frame.
+    """
     lbl_title = ttk.Label(dynamic_frame, text="Mesas",
                           font=("default", 12, "bold"))
 
@@ -43,11 +57,14 @@ def update_table(dynamic_frame):
     for row in data_base_for_tables:
         tree.insert("", "end", values=row)
 
-    scrollbar_y = ttk.Scrollbar(dynamic_frame, orient="vertical", command=tree.yview)
+    scrollbar_y = ttk.Scrollbar(dynamic_frame, orient="vertical",
+                                command=tree.yview)
     tree.configure(yscrollcommand=scrollbar_y.set)
 
     button_back = ttk.Button(dynamic_frame, text="Atrás",
-                             command=lambda frame=dynamic_frame: handler.templ_handler('menu_tables', frame))
+                             command=lambda frame=dynamic_frame: \
+                                 handler.templ_handler('menu_tables',
+                                                       frame))
     button_upd = ttk.Button(dynamic_frame, text="Actualizar",
                             style="Accent.TButton",
                             command=lambda: warning(dynamic_frame, tree))

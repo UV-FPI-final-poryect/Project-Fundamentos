@@ -4,14 +4,24 @@ import utils.template_handler
 import data_access_tools.tables_da as tool_table
 
 
+"""
+This module configures widgets within a frame, presenting various 
+options for delete tables.
+It imports local modules like 'template_handler' and 'tables_da' 
+to assist in this configuration.
+"""
+
+
+
 def warning(dynamic_frame, tree):
     try:
         option = tree.selection()
         if option:
             answer = messagebox.askokcancel("Advertencia",
-                                            "¿Seguro quieres ELIMINAR esta mesa de forma permanente?")
+                                            "¿Seguro quieres ELIMINAR esta \
+                                                mesa de forma permanente?")
             if answer:
-                del_table = tree.item(option)["values"]  # Guardamos los valores de la seleccion escogida
+                del_table = tree.item(option)["values"]
                 tool_table.delet_table(del_table[0])
                 utils.template_handler.templ_handler('del_table',
                                                      dynamic_frame)
@@ -43,12 +53,14 @@ def delete_table(dynamic_frame):
     for row in data_base_for_tables:
         tree.insert("", "end", values=row)
 
-    scrollbar_y = ttk.Scrollbar(dynamic_frame, orient="vertical", command=tree.yview)
+    scrollbar_y = ttk.Scrollbar(dynamic_frame, orient="vertical",
+                                command=tree.yview)
     tree.configure(yscrollcommand=scrollbar_y.set)
 
     button_back = ttk.Button(dynamic_frame, text="Atrás",
                              command=lambda frame=dynamic_frame:
-                                 utils.template_handler.templ_handler('menu_tables', frame))
+                                 utils.template_handler.templ_handler\
+                                     ('menu_tables', frame))
     button_del = ttk.Button(dynamic_frame, text="Eliminar",
                             style="Accent.TButton",
                             command=lambda: warning(dynamic_frame, tree))

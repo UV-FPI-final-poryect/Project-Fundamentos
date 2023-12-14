@@ -6,6 +6,15 @@ import re
 import utils.template_handler
 import data_access_tools.tables_da as tool_table
 
+
+"""
+This module configures widgets within a frame, presenting various 
+options for adding tables.
+It imports datetime and re libraries, as well as local modules like 
+'template_handler' and 'tables_da' to assist in this configuration.
+"""
+
+
 table_date = ''
 table_hour = ''
 people = ''
@@ -41,13 +50,15 @@ def warning(dynamic_frame):
 
     except ValueError:
         messagebox.showerror('Falta alguno de los campos',
-                             'Revisa que todos los campos esten correctos y se hayan guardado bien, e intenta '
+                             'Revisa que todos los campos esten correctos'
+                             'y se hayan guardado bien, e intenta '
                              'nuevamente')
 
     except Exception as e:
         print(e)
         messagebox.showerror('No se puedo completar la acción',
-                             'No se ha logrado realizar el proceso de agregación, llama al proveedor para asesoria')
+                             'No se ha logrado realizar el proceso de '
+                             'agregación, llama al proveedor para asesoria')
 
 
 def catch_date_table(var):
@@ -62,8 +73,9 @@ def catch_date_table(var):
             return True
     except ValueError:
         messagebox.showerror('Fecha no válida',
-                             'El formato de fecha no es aceptado, recuerda que debe ser aaaa-mm-dd'
-                             ' y que no sea una fecha anterior al día presente')
+                             'El formato de fecha no es aceptado, recuerda '
+                             'que debe ser aaaa-mm-dd y que no sea una '
+                             'fecha anterior al día presente')
         return False
 
 
@@ -81,9 +93,11 @@ def catch_hour_table(var):
             return True
     except ValueError:
         messagebox.showerror('Hora no válida',
-                             'El formato de hora no es aceptado, recuerda que debe ser hh:mm'
-                             ' y que no sea una hora anterior al día presente, ten en cuenta que se maneja'
-                             ' hora militar de las 00:00 hasta las 23:59 horas y que debes de ingresar primero'
+                             'El formato de hora no es aceptado, recuerda '
+                             'que debe ser hh:mm y que no sea una hora '
+                             'anterior al día presente, ten en cuenta que' 
+                             'se maneja hora militar de las 00:00 hasta las'
+                             '23:59 horas y que debes de ingresar primero'
                              ' la fecha')
         return False
 
@@ -100,6 +114,7 @@ def catch_people_table(var):
 
 
 def create_table(dynamic_frame):
+    # Primary method accessible to the user.
     global table_date
     global table_hour
     global people

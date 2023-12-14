@@ -3,6 +3,12 @@ from tkinter import ttk
 import utils.template_handler
 
 
+"""
+This module contains a method that configures the table menu, displaying
+all possible options such as adding, deleting, and updating tables.
+"""
+
+
 def menu_tables_template(dynamic_frame):
     lbl_title = ttk.Label(dynamic_frame, text="Gestión de Mesas",
                           font=("default", 12, "bold"))

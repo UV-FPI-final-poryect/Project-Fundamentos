@@ -5,17 +5,23 @@ import re
 import utils.template_handler
 import data_access_tools.tables_da as tool_table
 
+
+"""
+This module imports essential libraries such as tkinter, datetime, and
+re, utilizing methods like ttk and messagebox.
+It also imports two custom modules: 'template_handler' and 'tables_da'.
+The primary purpose of this module is to facilitate the saving of 
+modified tables.
+"""
+
+
 table_date = ''
 table_hour = ''
 people = ''
 
 
 def save_change(frame, upd_table):
-    """
-dskbckh
-    :param frame:
-    :param upd_table:
-    """
+    """This function verifies, processes, and saves the new changes."""
     global table_date
     global table_hour
     global people
@@ -35,8 +41,8 @@ dskbckh
     except ValueError:
         messagebox.showerror('Falta alguno de los campos',
                              'Revisa que todos los campos esten '
-                             'correctos y se hayan guardado bien, e intenta '
-                             'nuevamente')
+                             'correctos y se hayan guardado bien,'
+                             'e intenta nuevamente')
 
     except Exception as e:
         print(e)
@@ -120,15 +126,18 @@ def recharge_table(dynamic_frame, upd_table):
     entry_date_table = ttk.Entry(dynamic_frame,
                                  width=entry_box_width,
                                  validate="focusout",
-                                 validatecommand=(dynamic_frame.register(catch_date_table), '%P'))
+                                 validatecommand=(dynamic_frame.register\
+                                     (catch_date_table), '%P'))
     entry_hour_table = ttk.Entry(dynamic_frame,
                                  width=entry_box_width,
                                  validate="focusout",
-                                 validatecommand=(dynamic_frame.register(catch_hour_table), '%P'))
+                                 validatecommand=(dynamic_frame.register\
+                                     (catch_hour_table), '%P'))
     entry_people_table = ttk.Entry(dynamic_frame,
                                    width=entry_box_width,
                                    validate="key",
-                                   validatecommand=(dynamic_frame.register(catch_people_table), '%P'))
+                                   validatecommand=(dynamic_frame.register\
+                                       (catch_people_table), '%P'))
 
     entry_date_table.insert(0, upd_table[1])
     entry_hour_table.insert(0, upd_table[2])
@@ -141,12 +150,13 @@ def recharge_table(dynamic_frame, upd_table):
     button_add = ttk.Button(dynamic_frame,
                             text="Actualizar",
                             style="Accent.TButton",
-                            command=lambda: save_change(dynamic_frame, upd_table))
+                            command=lambda: save_change(dynamic_frame,
+                                                        upd_table))
 
     button_back = ttk.Button(dynamic_frame,
                              text="Atrás",
-                             command=lambda: utils.template_handler.templ_handler(
-                                 'upd_table', dynamic_frame))
+                             command=lambda: utils.template_handler.\
+                                 templ_handler('upd_table', dynamic_frame))
 
     lbl_title.grid(column=0, row=0, columnspan=2, padx=40, pady=10)
     lbl_date_table.grid(column=0, row=1, sticky="w", padx=(20, 0), pady=2)
