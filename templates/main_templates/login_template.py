@@ -4,6 +4,29 @@ import re
 import data_access_tools.user_auth as tools_users
 import utils.template_handler
 
+
+"""
+This template is generated to gather and verify the user log in info
+before it will be send to the user authentication script (user_auth.py).
+
+Imports:
+- 'ttk' module from the 'tkinter' library for creating the Graphical
+User Interface (GUI).
+- 'messagebox' module from the 'tkinter' library which creates a focused
+top level frame with an advise to the user.
+- 're' is the regular expression library for python where we can use 
+several methods to verify if a string accomplish a designed pattern.
+- 'user_auth' is the module which manage the user credentials.
+- 'templ_handler' method from the 'template_handler' module.
+
+Purpose:
+- Generates the log in template asigned to the dynamic_frame.
+- Utilizes 'ttk' for creating graphical elements in the GUI.
+- Implements 'templ_handler' for handling the templates in the application.
+- Verify that the credentials are right before manage it in the backend.
+"""
+
+
 user_email = ''
 user_pass = ''
 
