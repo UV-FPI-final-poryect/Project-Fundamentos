@@ -38,11 +38,11 @@ function-accessible categories for ease of retrieval.
 """
 
 
-normal_access_templ_dic = {'initial': initial_template,
+NORMAL_ACCESS_TEMPL_DIC = {'initial': initial_template,
                            'login': login_template,
                            'signin': signin_template}
 
-templ_dic = {'main_menu': main_menu_template,
+TEMPL_DIC = {'main_menu': main_menu_template,
              'dishes_management': dishes_management_template,
              'create_dish': create_dish_template,
              'delete_dish': delete_dish_template,
@@ -88,19 +88,19 @@ def templ_handler(choice, dynamic_frame):
     destroy_widgets(dynamic_frame)
     grid_rows_columns_config(dynamic_frame, 0)
     # Check if the key is in the dictionary.
-    if choice in templ_dic:
+    if choice in TEMPL_DIC:
         # Check if the user has permissions
         if tools_users.token:
-            temp_chosen = templ_dic[choice]
+            temp_chosen = TEMPL_DIC[choice]
             temp_chosen(dynamic_frame)
         else:
             messagebox.showerror('Faltan permisos',
                                  'No tiene autorización para realizar esta'
                                  'acción, autentiquese primero.')
-            temp_chosen = normal_access_templ_dic['initial']
+            temp_chosen = NORMAL_ACCESS_TEMPL_DIC['initial']
             temp_chosen(dynamic_frame)
     else:
-        temp_chosen = normal_access_templ_dic[choice]
+        temp_chosen = NORMAL_ACCESS_TEMPL_DIC[choice]
         temp_chosen(dynamic_frame)
 
     grid_rows_columns_config(dynamic_frame, 1)
