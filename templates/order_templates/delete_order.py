@@ -4,7 +4,24 @@ import utils.template_handler
 import data_access_tools.orders_da as orders_da
 
 
+"""
+This module serves as a template where all the widgets allowing order
+deletion are added to the dynamic_frame.
+It utilizes libraries such as 'tkinter' and methods like 'ttk' and 
+'messagebox', alongside modules like 'template handler' and 'orders_da'.
+"""
+
+
 def warning(dynamic_frame, tree_order):
+    """
+    This method asks the user to confirm his selected option to be 
+    deleted and uses exceptions to avoid program interruption.
+    
+    Params:
+        dynamic_frame (frame): The dynamic frame being configured for
+        user interaction.
+        tree_order (treeview - widget): the table with the order items.
+    """
     try:
         option = tree_order.selection()
         if option:
@@ -28,6 +45,7 @@ def warning(dynamic_frame, tree_order):
 
 
 def delete_order_template(dynamic_frame):
+    #Generates the structure for the order delete template
     lbl_title = ttk.Label(dynamic_frame,
                           text="Eliminar Pedido",
                           font=("default", 12, "bold"))
