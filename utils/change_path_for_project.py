@@ -1,5 +1,6 @@
 import os
 
+
 def change_path():
     # Obtén la ruta del script actual
     script_dir = os.path.dirname(__file__)

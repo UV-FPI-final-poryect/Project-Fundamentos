@@ -4,19 +4,39 @@ from PIL import Image, ImageTk
 from utils.change_path_for_project import change_path
 from utils.template_handler import templ_handler
 
-"""este es el módulo principal, donde se genera la interfaz con la que se 
-trabaja a lo largo del proyecto"""
+
+"""
+This is the main module responsible for generating the project's
+primary interface.
+
+Imports:
+- 'ttk' module from the 'tkinter' library for creating the Graphical
+User Interface (GUI).
+- 'Image' and 'ImageTk' modules from the 'PIL' 
+(Python Imaging Library) for image handling.
+- 'change_path' method from the 'change_path_for_project' module for
+path manipulation.
+- 'templ_handler' method from the 'template_handler' module.
+
+Purpose:
+- Generates the primary interface used throughout the project.
+- Utilizes 'ttk' for creating graphical elements in the GUI.
+- Handles image-related tasks using 'Image' and 'ImageTk' from 'PIL'.
+- Uses 'change_path' for managing and manipulating paths as required.
+- Implements 'templ_handler' for handling templates or related 
+functionalities.
+"""
 
 
 def center_window(root):
     """
-    Centra la ventana principal de la interfaz en la pantalla del usuario.
+    Centers the main interface window on the user's screen.
 
-    el método update_idletasks() se asegura que tkinter haya ejecutado
-    todas las tareas pendientes para asegurar que el tamaño de la ventana
-    ha sido definido y evitar un falso posicionamiento.
+    The 'update_idletasks()' method ensures that tkinter has executed
+    all pending tasks to properly define the window size and prevent 
+    misplacement.
 
-    :param root: top level widget o ventana creada para el proyecto
+    :param root: is the main window for the project.
     """
     root.update_idletasks()
     window_width = root.winfo_width()
@@ -38,9 +58,9 @@ if __name__ == '__main__':
     root.resizable(False, False)
     root.iconbitmap('../multimedia/forkandknife.ico')
 
-    # Se llama y aplica tema forest-dark a al GUI
-    root.tk.call('source', '../resources/Forest-ttk-theme-master/forest'
-                           '-dark.tcl')
+    # Forest-dark theme is called and applied to the GUI.
+    root.tk.call('source',
+                 '../resources/Forest-ttk-theme-master/forest-dark.tcl')
     ttk.Style().theme_use('forest-dark')
 
     last_plain_bg = "#858585"
