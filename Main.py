@@ -6,8 +6,8 @@ from utils.template_handler import templ_handler
 
 
 """
-Autors: Juan David Cifuentes Florez - 202380581
-        Santiago Lopez Ramirez - 202380798
+Autors: Juan David Cifuentes Florez
+        Santiago Lopez Ramirez
 
 This is the main module responsible for generating the project's
 primary interface.
