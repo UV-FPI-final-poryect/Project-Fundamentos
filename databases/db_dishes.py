@@ -1,3 +1,6 @@
+"""The database containing information about dishes."""
+
+
 db_id = 15
 
 COLUMNS_NAMES = ["Código", "Nombre", "Precio", "Descripción", "Disponible"]

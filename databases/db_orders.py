@@ -1,3 +1,6 @@
+"""The database containing information about orders."""
+
+
 num_order = 6
 
 title_orders = ["N. Pedido", 'Lugar', 'N. Mesa', '     ', 'N. Plato']

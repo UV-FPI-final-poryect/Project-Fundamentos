@@ -1,3 +1,6 @@
+"""The database containing information about tables."""
+
+
 id_tables_reserves = 6
 
 total_tables = 11
