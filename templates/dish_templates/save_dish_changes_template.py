@@ -9,8 +9,9 @@ import data_access_tools.dishes_da as tools_dishes
 This module configures the dish saving template, modifying the 
 'dynamic_frame'.
 
-It imports libraries such as 'tkinter', 'ttk', 're' (Regular Expression) for checking specific conditions within text input,
-the 'dishes_da' module for calling methods assisting in dish creation and updates, 
+It imports libraries such as 'tkinter', 'ttk', 're' (Regular Expression) for 
+checking specific conditions within text input, the 'dishes_da' module for
+calling methods assisting in dish creation and updates, 
 and the 'template_handler' module for configuring the frame.
 """
 
