@@ -70,11 +70,13 @@ def verify_process(dynamic_frame):
 
 def catch_user_email(var):
     """
-    Here validates the email entered in the entry_email widget using the 're' library and if everything is ok,
-    the entered email is assigned to the user_email global variable.
+    Here validates the email entered in the entry_email widget using the 
+    're' library and if everything is ok, the entered email is assigned 
+    to the user_email global variable.
 
     Parameters:
-        var (String): is the parameter given by the validatecommand to be evaluated.
+        var (String): is the parameter given by the validatecommand to be 
+        evaluated.
     """
     global user_email
     pattern = r'[A-Za-z0-9._%+-]+@{1}(gmail|hotmail|yahoo|outlook|correounivalle.edu){1}+\.(com|co){1}'
@@ -93,7 +95,8 @@ def catch_user_pass(var):
     Just catch the password entered.
 
     Parameters:
-        var (String): is the parameter given by the validatecommand to be evaluated.
+        var (String): is the parameter given by the validatecommand to be
+        evaluated.
     """
     global user_pass
     user_pass = var
