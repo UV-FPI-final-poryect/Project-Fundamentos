@@ -5,6 +5,13 @@ import data_access_tools.dishes_da as tools_dishes
 from templates.dish_templates.save_dish_changes_template import save_dish_changes_template
 
 
+"""
+This module imports libraries such as tkinter, ttk, and messagebox 
+for notifications, as well as widgets and functionalities for table
+organization within the dynamic_frame. 
+Additionally, it imports modules like 'dishes_da' for dish saving and updating.
+"""
+
 def warning(dynamic_frame, tree):
     try:
         selected = tree.selection()
@@ -23,6 +30,7 @@ def warning(dynamic_frame, tree):
 
 
 def update_dish_template(dynamic_frame):
+    """This is the main template where we configure all widgets within the frame."""
     lbl_title = ttk.Label(dynamic_frame,
                           text="Actualizar plato",
                           font=("default", 12, "bold"))

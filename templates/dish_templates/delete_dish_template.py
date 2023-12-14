@@ -3,8 +3,23 @@ from tkinter import messagebox
 import utils.template_handler
 import data_access_tools.dishes_da as tools_dishes
 
+"""
+This module serves as a template where all the widgets allowing dish
+deletion are added to the dynamic_frame.
+It utilizes libraries such as 'tkinter' and methods like 'ttk' and 
+'messagebox', alongside modules like 'template handler' and 'dishes_da'.
+"""
+
 
 def warning(dynamic_frame, tree):
+    """
+    This method asks the user to confirm his selected option to be 
+    deleted and uses exceptions to avoid program interruption.
+    
+    Args:
+        dynamic_frame (frame): The dynamic frame being configured for
+        user interaction.
+    """
     try:
         selected = tree.selection()
         if selected:
@@ -22,6 +37,14 @@ def warning(dynamic_frame, tree):
 
 
 def delete_dish_template(dynamic_frame):
+    """
+    This method receives the frame and configures it to display the GUI. 
+    GUI 'Remove Dishes'.
+    
+    Args:
+        dynamic_frame (widget): The frame widget to be configured for 
+        displaying the 'Eliminar Platos' interface.
+    """
     lbl_title = ttk.Label(dynamic_frame,
                           text="Eliminar plato",
                           font=("default", 12, "bold"))

@@ -4,6 +4,16 @@ import re
 import utils.template_handler
 import data_access_tools.dishes_da as tools_dishes
 
+
+"""
+This module configures the dish saving template, modifying the 
+'dynamic_frame'.
+
+It imports libraries such as 'tkinter', 'ttk', 're' (Regular Expression) for checking specific conditions within text input,
+the 'dishes_da' module for calling methods assisting in dish creation and updates, 
+and the 'template_handler' module for configuring the frame.
+"""
+
 dish_name = ''
 dish_price = ''
 dish_description = ''
@@ -12,6 +22,7 @@ OPTIONS = ('Si', 'No')
 
 
 def save_process(dynamic_frame, dish_to_update):
+    """This function verifies, processes, and saves the new changes."""
     global dish_name
     global dish_price
     global dish_description
@@ -68,6 +79,7 @@ def catch_dish_availability(event):
 
 
 def save_dish_changes_template(dynamic_frame, dish_to_update):
+    # Method used for configuring widgets in the template.
     utils.template_handler.destroy_widgets(dynamic_frame)
     global dish_name
     global dish_price
@@ -89,20 +101,25 @@ def save_dish_changes_template(dynamic_frame, dish_to_update):
     entry_dish_name = ttk.Entry(dynamic_frame,
                                 width=entry_box_width,
                                 validate="key",
-                                validatecommand=(dynamic_frame.register(catch_dish_name), '%P'))
+                                validatecommand=(dynamic_frame.register\
+                                    (catch_dish_name), '%P'))
     entry_dish_price = ttk.Entry(dynamic_frame,
                                  width=entry_box_width,
                                  validate="key",
-                                 validatecommand=(dynamic_frame.register(catch_dish_price), '%P'))
+                                 validatecommand=(dynamic_frame.\
+                                     register(catch_dish_price), '%P'))
     entry_dish_description = ttk.Entry(dynamic_frame,
                                        width=entry_box_width,
                                        validate="key",
-                                       validatecommand=(dynamic_frame.register(catch_dish_description), '%P'))
+                                       validatecommand=(dynamic_frame.\
+                                           register(catch_dish_description),
+                                           '%P'))
 
     combobox_dish_availability = ttk.Combobox(dynamic_frame,
                                               width=(entry_box_width - 3),
                                               values=OPTIONS)
-    combobox_dish_availability.bind("<<ComboboxSelected>>", catch_dish_availability)
+    combobox_dish_availability.bind("<<ComboboxSelected>>",
+                                    catch_dish_availability)
 
     entry_dish_name.insert(0, dish_to_update[1])
     entry_dish_price.insert(0, dish_to_update[2])
@@ -118,14 +135,14 @@ def save_dish_changes_template(dynamic_frame, dish_to_update):
         dynamic_frame,
         text="Guardar",
         style="Accent.TButton",
-        command=lambda frame=dynamic_frame, dish=dish_to_update: save_process(frame,
-                                                                              dish))
+        command=lambda frame=dynamic_frame, dish=dish_to_update:\
+            save_process(frame, dish))
 
     button_back = ttk.Button(
         dynamic_frame,
         text="Atrás",
-        command=lambda frame=dynamic_frame: utils.template_handler.templ_handler(
-            'update_dish', frame))
+        command=lambda frame=dynamic_frame: utils.template_handler.\
+            templ_handler('update_dish', frame))
 
     lbl_title.grid(column=0, row=0, columnspan=2, padx=40, pady=10)
     lbl_dish_name.grid(column=0, row=1, sticky="w", padx=(20, 0), pady=2)
